@@ -1,0 +1,3 @@
+[submodule "sm-common"]
+	path = sm-common
+	url = https://github.com/hijimo/sm-common.git

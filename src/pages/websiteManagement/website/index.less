@@ -1,0 +1,129 @@
+.root {
+  margin-bottom: 60px;
+
+  .textCenter {
+    text-align: center;
+  }
+  .iconItem {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 50px;
+  }
+
+  .section {
+    position: relative;
+    min-width: 900px;
+    padding-bottom: 16px;
+    background-color: #fff;
+
+    .sectionTrigger {
+      &:hover .coverWrapper {
+        display: flex;
+        background: rgba(111, 135, 238, 0.6);
+        transform: scale(1);
+      }
+    }
+
+    .text {
+      color: black;
+    }
+
+    .coverWrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      background: #6f87ee99;
+      transform: scale(0, 1);
+      transform-origin: 100% 50%;
+      transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+      & > * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      :global {
+        .ant-typography {
+          color: #fff;
+        }
+
+        .ant-switch {
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .title {
+        margin-bottom: 2rem;
+      }
+
+      .icon {
+        margin-bottom: 0.8rem;
+        font-size: 24px;
+      }
+
+      .switch {
+        position: absolute;
+        bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+
+  .banner {
+    width: 100%;
+  }
+  .bannerContentRow {
+    margin-top: 100px;
+    :global {
+      .ant-typography {
+        color: #fff;
+      }
+    }
+    @media screen and (min-width: 1400px) {
+      margin-top: 160px;
+    }
+  }
+  .bannerContentRow,
+  .section3ContentRow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    color: #fff;
+  }
+  .section3ContentRow {
+    margin-top: 56px;
+    color: #000;
+    .iconItemsWrap {
+      :global {
+        .ant-typography {
+          font-size: 80%;
+        }
+      }
+
+      width: 900px;
+      margin: 0 auto;
+      margin-top: 160px;
+      @media screen and (max-width: 1400px) {
+        margin-top: 100px;
+      }
+    }
+  }
+  :global {
+    .ucharm-bottom-panel {
+      z-index: 2;
+    }
+  }
+}

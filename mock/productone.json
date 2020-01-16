@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "retCode": "200",
+  "retMsg": "",
+  "data": {
+    "categoryIds": [10, 286],
+    "productNumber": "P489720909",
+    "productName": "junk food",
+    "productDesc": "Junk food is a pejorative term, dating back at least to the 1950s, describing food that is high in calories from sugar or fat, with little dietary fiber, protein, vitamins or minerals. It can also refer to high protein food like meat prepared with saturated fat.",
+    "fileList": [
+      {
+        "version": null,
+        "fileUrl": "https://img.test.yeeorder.com.cn/2019/09/18/14ad2946-6a78-4b49-bb8b-371c146e3331.png",
+        "name": "1f389.png",
+        "size": 8423,
+        "uid": "https://img.test.yeeorder.com.cn/2019/09/18/14ad2946-6a78-4b49-bb8b-371c146e3331.png",
+        "url": "https://img.test.yeeorder.com.cn/2019/09/18/14ad2946-6a78-4b49-bb8b-371c146e3331.png"
+      },
+      {
+        "version": null,
+        "fileUrl": "https://img.test.yeeorder.com.cn/2019/09/18/4fe67c0e-a9c7-4d8e-9277-c22f9c5dc597.jpg",
+        "name": "25-120Q61F605T8.jpg",
+        "size": 5297,
+        "uid": "https://img.test.yeeorder.com.cn/2019/09/18/4fe67c0e-a9c7-4d8e-9277-c22f9c5dc597.jpg",
+        "url": "https://img.test.yeeorder.com.cn/2019/09/18/4fe67c0e-a9c7-4d8e-9277-c22f9c5dc597.jpg"
+      },
+      {
+        "version": null,
+        "fileUrl": "https://img.test.yeeorder.com.cn/2019/09/18/903af479-b632-4f56-b7e6-2445e62e7213.jpg",
+        "name": "9922720e0cf3d7cac24c8c82f01fbe096a63a988.jpg",
+        "size": 51427,
+        "uid": "https://img.test.yeeorder.com.cn/2019/09/18/903af479-b632-4f56-b7e6-2445e62e7213.jpg",
+        "url": "https://img.test.yeeorder.com.cn/2019/09/18/903af479-b632-4f56-b7e6-2445e62e7213.jpg"
+      }
+    ]
+  },
+  "timestamp": 1568620857830
+}

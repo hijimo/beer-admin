@@ -1,0 +1,23 @@
+export default {
+  'page.role.btn.add.role': '新增',
+  'page.role.label.delete.role': '删除',
+  'page.role.label.sureDelete.role': '确认删除该角色？',
+  'page.role.label.add.role': '新增',
+  'page.role.label.edit.role': '编辑',
+  'page.role.label.enable.role': '解冻确认',
+  'page.role.label.sureEnable.role': '确认解冻?',
+  'page.role.label.unEnable.role': '冻结确认',
+  'page.role.label.sureUnEnable.role': '确认冻结?',
+  'page.role.table.label.roleName': '角色名称',
+  'page.role.input.placeholder.roleName': '请输入角色名称',
+  'page.role.table.label.roleDesc': '角色描述',
+  'page.role.input.placeholder.roleDesc': '请输入角色描述',
+  'page.role.table.label.roleNo': '角色编号',
+  'page.role.input.placeholder.roleNo': '请输入角色编号',
+  'page.role.table.label.roleType': '角色类型',
+  'page.role.input.placeholder.roleType': '请选择角色类型',
+  'page.role.table.label.roleMenu': '资源权限',
+  'page.role.input.placeholder.roleMenu': '请选择资源权限',
+  'page.role.table.label.roleStatus': '状态',
+};
+// seed=118

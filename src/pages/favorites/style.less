@@ -1,0 +1,75 @@
+.favorites {
+  .OnShelves {
+    :global {
+      .ant-avatar,
+      h3 {
+        cursor: pointer;
+      }
+    }
+  }
+  :global {
+    .ant-avatar-image {
+      border: none;
+    }
+    .ant-list-item {
+      position: relative;
+
+      .ant-avatar {
+        margin-right: 10px;
+      }
+    }
+    .ant-list-item:first-of-type {
+      border-top: 1px solid #e8e8e8;
+    }
+    .listContent {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .ant-descriptions {
+        flex: 1;
+        margin-right: 10px;
+        .ant-descriptions-title {
+          margin-bottom: 12px;
+        }
+        .ant-descriptions-item {
+          display: flex;
+          padding-bottom: 8px;
+        }
+      }
+      .listSupplier {
+        flex: none;
+        width: 30%;
+        .ant-typography {
+          color: rgba(0, 0, 0, 0.85);
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+
+  .offShelvesAvatar {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    width: 90px;
+    height: 50px;
+    margin-top: -25px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 50px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .offShelvesContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+  }
+}

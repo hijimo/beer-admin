@@ -1,0 +1,224 @@
+@import '~antd/es/style/themes/default.less';
+
+.textOverflow() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.clearfix() {
+  zoom: 1;
+  &::before,
+  &::after {
+    display: table;
+    content: ' ';
+  }
+  &::after {
+    clear: both;
+    height: 0;
+    font-size: 0;
+    visibility: hidden;
+  }
+}
+
+.pageHeaderContent {
+  display: flex;
+  .avatar {
+    flex: 0 1 72px;
+    & > span {
+      display: block;
+      width: 72px;
+      height: 72px;
+      border-radius: 72px;
+    }
+  }
+  .content {
+    position: relative;
+    top: 4px;
+    flex: 1 1 auto;
+    margin-left: 24px;
+    color: @text-color-secondary;
+    line-height: 22px;
+    .contentTitle {
+      margin-bottom: 12px;
+      color: @heading-color;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+}
+
+.card {
+  margin-bottom: 24px;
+}
+
+.rfqItem {
+  display: flex;
+  align-items: center;
+
+  .rfqItemAvatar {
+    margin-right: 10px;
+  }
+
+  .rfqItemContent {
+    display: flex;
+    align-items: center;
+    :global {
+      .ant-descriptions-row {
+        display: flex;
+      }
+    }
+    td.rfqItemCategory {
+      display: flex;
+      flex: 1 1 70%;
+      margin-right: 8px;
+    }
+    .rfqItemQuantity {
+      display: flex;
+      flex: none;
+    }
+
+    td {
+      padding-bottom: 8px;
+    }
+  }
+}
+
+.actionItem {
+  position: relative;
+  height: 100px;
+  margin-bottom: 12px;
+
+  :global {
+    .ant-card-body {
+      padding: 15px;
+
+      span {
+        word-break: break-all;
+      }
+    }
+  }
+
+  .actionAvatar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+  }
+}
+
+.descriptionsItem {
+  padding-bottom: 0 !important;
+}
+
+.extraContent {
+  .clearfix();
+
+  float: right;
+  white-space: nowrap;
+  .statItem {
+    position: relative;
+    display: inline-block;
+    padding: 0 32px;
+    > p:first-child {
+      margin-bottom: 4px;
+      color: @text-color-secondary;
+      font-size: @font-size-base;
+      line-height: 22px;
+    }
+    > p {
+      margin: 0;
+      color: @heading-color;
+      font-size: 30px;
+      line-height: 38px;
+      > span {
+        color: @text-color-secondary;
+        font-size: 20px;
+      }
+    }
+    &::after {
+      position: absolute;
+      top: 8px;
+      right: 0;
+      width: 1px;
+      height: 40px;
+      background-color: @border-color-split;
+      content: '';
+    }
+    &:last-child {
+      padding-right: 0;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: @screen-xl) and (min-width: @screen-lg) {
+  .extraContent {
+    margin-left: -44px;
+    .statItem {
+      padding: 0 16px;
+    }
+  }
+}
+
+@media screen and (max-width: @screen-lg) {
+  .extraContent {
+    float: none;
+    margin-right: 0;
+    .statItem {
+      padding: 0 16px;
+      text-align: left;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: @screen-md) {
+  .extraContent {
+    margin-left: -16px;
+  }
+}
+
+@media screen and (max-width: @screen-sm) {
+  .pageHeaderContent {
+    display: block;
+    .content {
+      margin-left: 0;
+    }
+  }
+  .extraContent {
+    .statItem {
+      float: none;
+    }
+  }
+}
+
+.actionList {
+  :global {
+    .ant-card-head {
+      border: none;
+    }
+  }
+}
+
+.mapChart {
+  height: 300px;
+}
+
+.rfqTitle {
+  :global {
+    .ant-descriptions-item {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.qcFail {
+  color: red;
+}

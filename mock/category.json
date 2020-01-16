@@ -1,0 +1,404 @@
+{
+  "success": true,
+  "retCode": "200",
+  "retMsg": "",
+  "data": [
+    {
+      "version": null,
+      "id": 332,
+      "pid": 0,
+      "name": "Home & Livinge",
+      "title": "Home & Livinge",
+      "value": 332,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 333,
+          "pid": 332,
+          "name": "Bedding",
+          "title": "Bedding",
+          "value": 333,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 10,
+      "pid": 0,
+      "name": "Health&Beauty",
+      "title": "Health&Beauty",
+      "value": 10,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 287,
+          "pid": 10,
+          "name": "Health & Wellness",
+          "title": "Health & Wellness",
+          "value": 287,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 286,
+          "pid": 10,
+          "name": "Beauty",
+          "title": "Beauty",
+          "value": 286,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 9,
+      "pid": 0,
+      "name": "Grocery",
+      "title": "Grocery",
+      "value": 9,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 351,
+          "pid": 9,
+          "name": "Water",
+          "title": "Water",
+          "value": 351,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 259,
+          "pid": 9,
+          "name": "Food & Grocery",
+          "title": "Food & Grocery",
+          "value": 259,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 8,
+      "pid": 0,
+      "name": "Baby&Toys&Pet",
+      "title": "Baby&Toys&Pet",
+      "value": 8,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 228,
+          "pid": 8,
+          "name": "Toys & Games",
+          "title": "Toys & Games",
+          "value": 228,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 227,
+          "pid": 8,
+          "name": "Pet Supplies",
+          "title": "Pet Supplies",
+          "value": 227,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 226,
+          "pid": 8,
+          "name": "Baby",
+          "title": "Baby",
+          "value": 226,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 7,
+      "pid": 0,
+      "name": "Electronics",
+      "title": "Electronics",
+      "value": 7,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 188,
+          "pid": 7,
+          "name": "TVs & Electronics",
+          "title": "TVs & Electronics",
+          "value": 188,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 187,
+          "pid": 7,
+          "name": "Appliances",
+          "title": "Appliances",
+          "value": 187,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 6,
+      "pid": 0,
+      "name": "Seasonal & Gifts",
+      "title": "Seasonal & Gifts",
+      "value": 6,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 166,
+          "pid": 6,
+          "name": "Seasonal",
+          "title": "Seasonal",
+          "value": 166,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 165,
+          "pid": 6,
+          "name": "Gifts",
+          "title": "Gifts",
+          "value": 165,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 5,
+      "pid": 0,
+      "name": "Stationery & Office Supplies",
+      "title": "Stationery & Office Supplies",
+      "value": 5,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 146,
+          "pid": 5,
+          "name": "Office Supplies",
+          "title": "Office Supplies",
+          "value": 146,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 145,
+          "pid": 5,
+          "name": "Books & Magazines",
+          "title": "Books & Magazines",
+          "value": 145,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 4,
+      "pid": 0,
+      "name": "Fitness & Sports & Outdoors",
+      "title": "Fitness & Sports & Outdoors",
+      "value": 4,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 119,
+          "pid": 4,
+          "name": "Outdoor Living",
+          "title": "Outdoor Living",
+          "value": 119,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 118,
+          "pid": 4,
+          "name": "Fitness & Sports",
+          "title": "Fitness & Sports",
+          "value": 118,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 3,
+      "pid": 0,
+      "name": "Tools & Uniform & Automotive",
+      "title": "Tools & Uniform & Automotive",
+      "value": 3,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 77,
+          "pid": 3,
+          "name": "Tools",
+          "title": "Tools",
+          "value": 77,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 76,
+          "pid": 3,
+          "name": "Automotive",
+          "title": "Automotive",
+          "value": 76,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 2,
+      "pid": 0,
+      "name": "Home & Garden",
+      "title": "Home & Garden",
+      "value": 2,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 44,
+          "pid": 2,
+          "name": "Yard, Garden & Outdoor Living",
+          "title": "Yard, Garden & Outdoor Living",
+          "value": 44,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 43,
+          "pid": 2,
+          "name": "Home",
+          "title": "Home",
+          "value": 43,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 42,
+          "pid": 2,
+          "name": "Collections",
+          "title": "Collections",
+          "value": 42,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    },
+    {
+      "version": null,
+      "id": 1,
+      "pid": 0,
+      "name": "Clothing & Shoes & Accessory",
+      "title": "Clothing & Shoes & Accessory",
+      "value": 1,
+      "propertyNames": null,
+      "level": 0,
+      "children": [
+        {
+          "version": null,
+          "id": 13,
+          "pid": 1,
+          "name": "Shoes",
+          "title": "Shoes",
+          "value": 13,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 12,
+          "pid": 1,
+          "name": "Jewelry",
+          "title": "Jewelry",
+          "value": 12,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        },
+        {
+          "version": null,
+          "id": 11,
+          "pid": 1,
+          "name": "Clothing",
+          "title": "Clothing",
+          "value": 11,
+          "propertyNames": null,
+          "level": 1,
+          "children": null
+        }
+      ]
+    }
+  ],
+  "timestamp": 1568620857830
+}

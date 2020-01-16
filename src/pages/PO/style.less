@@ -1,0 +1,99 @@
+:global {
+  .cancelDot {
+    .ant-steps-item-icon {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-color: rgba(0, 0, 0, 0.5);
+    }
+    .ant-steps-item-content {
+      color: rgba(0, 0, 0, 0.5) !important;
+    }
+    .ant-steps-icon {
+      color: #fff !important;
+    }
+  }
+
+  .qcItem {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    & > *:last-child {
+      padding-right: 20px;
+    }
+  }
+
+  .paymentStatus {
+    .ant-descriptions-item[colspan='3'] {
+      align-items: baseline;
+    }
+  }
+
+  .poInfo {
+    .generalTable {
+      margin-bottom: 16px;
+    }
+    .ant-descriptions-title {
+      font-weight: 500;
+    }
+  }
+
+  .ant-steps-label-vertical {
+    .ant-steps-item:last-child {
+      flex: 1 1;
+    }
+    .ant-steps-item-content {
+      width: auto !important;
+    }
+    .ant-steps-item-icon {
+      display: block !important;
+      margin: 0 auto !important;
+    }
+    .ant-steps-item-tail {
+      left: 50% !important;
+      margin-left: 0 !important;
+    }
+  }
+}
+
+.qcFail {
+  color: red;
+}
+
+.imgRow {
+  display: flex;
+  flex-direction: column;
+
+  :global {
+    .uploadList {
+      padding-top: 10px;
+    }
+  }
+}
+
+.moneyText {
+  margin-right: 16px;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.canceled {
+  :global {
+    .ant-steps-item-error .ant-steps-item-icon {
+      background-color: gray;
+      border-color: gray;
+
+      .ant-steps-icon {
+        color: #fff;
+      }
+    }
+    .ant-steps-item-error
+      > .ant-steps-item-container
+      > .ant-steps-item-content
+      > .ant-steps-item-title {
+      color: rgba(0, 0, 0, 0.65);
+    }
+    .ant-steps-item-error .ant-steps-item-description {
+      color: rgba(0, 0, 0, 0.45) !important;
+    }
+  }
+}

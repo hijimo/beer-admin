@@ -1,0 +1,115 @@
+.root {
+  box-sizing: border-box;
+  .ant-card-body {
+    padding: 0;
+  }
+  .ant-form {
+    display: flex;
+  }
+  .imgRow {
+    padding-bottom: 0;
+    :global {
+      .ant-descriptions-item-content {
+        display: block;
+        margin-top: 0.5em;
+      }
+    }
+  }
+  :global(.ant-form-item-children) {
+    display: flex;
+    flex-direction: column;
+  }
+  :global {
+    .ant-upload-disabled {
+      display: none !important;
+    }
+    .ucharm-address-selector .ant-select {
+      width: 200px;
+    }
+    .ant-card {
+      margin-bottom: 24px;
+    }
+    .ant-form .ant-form-item:last-child {
+      margin-bottom: 0;
+    }
+    .ant-radio-wrapper {
+      width: 104px;
+    }
+  }
+}
+.fixWidthField {
+  width: 200px !important;
+}
+.addControl {
+  margin-top: 8px;
+  :global {
+    .ant-input {
+      width: 120px;
+    }
+  }
+  .plus {
+    margin-left: 8px;
+    color: #1890ff;
+  }
+}
+
+.btnsWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2em;
+  button {
+    margin-left: 16px;
+  }
+}
+
+.cardDetail {
+  margin-top: 15px;
+}
+
+:global {
+  .uploadTips {
+    margin-top: -20px;
+    margin-bottom: 0;
+    font-size: 12px;
+  }
+  .inputNumber {
+    display: flex;
+  }
+}
+
+.productImages {
+  position: relative;
+
+  :global {
+    .ant-upload-list-picture-card-container {
+      margin: 0 8px 40px 0;
+    }
+  }
+}
+.detailProductImages {
+  position: relative;
+
+  :global {
+    .ant-upload-list-picture-card-container {
+      margin: 0 8px 22px 0;
+    }
+  }
+}
+
+.primaryPic {
+  position: absolute;
+}
+.inputNumberAfter {
+  height: 32px;
+  margin-bottom: 0;
+  padding: 0 11px;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 32px;
+  text-align: center;
+  background-color: #fafafa;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  transition: all 0.3s;
+}

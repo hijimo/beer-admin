@@ -1,0 +1,23 @@
+export default {
+  'page.role.btn.add.role': 'Add',
+  'page.role.label.delete.role': 'Delete',
+  'page.role.label.sureDelete.role': 'Are you sure you want to delete this role?',
+  'page.role.label.add.role': 'Add',
+  'page.role.label.edit.role': 'Edit',
+  'page.role.label.enable.role': 'Enable',
+  'page.role.label.sureEnable.role': 'Are you sure you want to enable this user?',
+  'page.role.label.unEnable.role': 'Disable',
+  'page.role.label.sureUnEnable.role': 'Are you sure you want to disable this user?',
+  'page.role.table.label.roleName': 'Role Name',
+  'page.role.input.placeholder.roleName': 'Please enter the role name',
+  'page.role.table.label.roleDesc': 'Role Description',
+  'page.role.input.placeholder.roleDesc': 'Please enter the role description',
+  'page.role.table.label.roleNo': 'Role No.',
+  'page.role.input.placeholder.roleNo': 'Please enter Role No.',
+  'page.role.table.label.roleType': 'Role Type',
+  'page.role.input.placeholder.roleType': 'Please select role type',
+  'page.role.table.label.roleMenu': 'Resources',
+  'page.role.input.placeholder.roleMenu': 'Please select a resource',
+  'page.role.table.label.roleStatus': 'Status',
+};
+// seed=118
