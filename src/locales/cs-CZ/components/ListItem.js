@@ -1,0 +1,25 @@
+export default {
+  // company
+  'component.listitem.label.offeringFields': 'Nabídka polí',
+  'component.listitem.label.sourceFields': 'Sourcing pole',
+  'component.listitem.label.sizeOfStore': 'Velikost obchodu',
+  'component.listitem.label.storeNumber': 'Počet konzultací',
+  'component.listitem.label.salesRevenue': 'Tržby z prodeje',
+  'component.listitem.label.quantitiesInTEUs': 'Dovozní množství v TEU p.a.',
+  'component.listitem.label.business': 'podnikání',
+  'component.listitem.label.tradeVolume6Month': 'Objem obchodu (6 měsíců)',
+  'component.listitem.label.difot': 'DIFOT',
+  'component.listitem.label.qcPassRate': 'Průchodnost QC',
+  'component.listitem.label.avgLeadTime': 'Prům. Dodací lhůta',
+  'component.listitem.label.location': 'Místo',
+  'component.listitem.label.contactSupplier': 'Dodavatele',
+  'component.listitem.label.submitError': 'This item is currently unavailable',
+  'component.listitem.label.ok': 'Potvrdit',
+  // rfq
+  'component.listitem.label.quantity': 'Množství',
+  'component.listitem.label.country': 'Země',
+  'component.listitem.label.timeLeft': 'Zbývá čas',
+  'component.listitem.label.quoteNow': 'Nabídka nyní',
+  'component.listitem.label.quoted': 'Citováno',
+  'component.listitem.label.quotesLeft': 'Cena zbývajících míst',
+};

@@ -21,8 +21,8 @@ const plugins = [
       locale: {
         // default false
         enable: true,
-        // default: 'zh-CN',
-        default: 'en-US',
+        default: 'zh-CN',
+        // default: 'en-US',
         // default true, when it is true, will use `navigator.language` overwrite default
         baseNavigator: true,
       },
@@ -128,11 +128,11 @@ export default {
     basePath: '/',
   },
   chainWebpack: webpackPlugin,
-  proxy: {
-    '/api': {
-      // target: 'https://supplier.test.yeeorder.com.cn/',
-      target: 'https://supplier.dev.yeeorder.com.cn/',
-      changeOrigin: true,
-    },
-  },
+  // proxy: {
+  //   '/': {
+  //     // target: 'https://supplier.test.yeeorder.com.cn/',
+  //     target: 'http://localhost:9527',
+  //     changeOrigin: true,
+  //   },
+  // },
 };

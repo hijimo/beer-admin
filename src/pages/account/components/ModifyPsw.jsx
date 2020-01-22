@@ -34,27 +34,21 @@ class ModifyPsw extends Component {
           required: true,
           message: formatMessage({ id: 'app.account.account-password-empty-message' }),
         },
-        {
-          validator: pswValidator,
-        },
+        
       ],
       newPassword: [
         {
           required: true,
           message: formatMessage({ id: 'app.account.new-password-empty-message' }),
         },
-        {
-          validator: pswValidator,
-        },
+        
       ],
       confirmPassword: [
         {
           required: true,
           message: formatMessage({ id: 'app.account.confirm-password-empty-message' }),
         },
-        {
-          validator: pswValidator,
-        },
+        
         {
           validator: this.pswCheck,
           message: formatMessage({ id: 'app.account.password-is-different' }),

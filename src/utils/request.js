@@ -4,18 +4,65 @@
  */
 
 import request from '@common/utils/request';
+import qs from 'qs';
+import { Modal } from 'antd';
+import moment from 'moment'
+import {clearLocalStorage,getExpireTime,getToken} from './ls'
 // import config from '@common/config';
 
 // const { mallHost } = config;
-request.interceptors.response.use(async response => {
-  const data = await response.clone().json();
-  if (data.retCode === '0001007') {
-    const { loginUri, appNo } = data.data;
 
-    // 登录过期后，重新登录回到当前页面。
-    window.location.href = `${loginUri}?appNo=${appNo}&redirectUrl=${window.location.href}`;
-    // window.location.href = `${mallHost}/user/login?redirectUrl=${window.location.href}`;
+
+const baseUrl = process.env.NODE_ENV === 'production'
+? 'http://47.111.80.10:9527'
+: // : 'http://45.40.205.143:9527/',
+  'http://127.0.0.1:9527';
+
+
+const listInFormEncode = [
+
+  '/user/password/reset',
+  '/login',
+  '/user',
+  '/user/password',
+]
+
+  request.interceptors.request.use((url, options) => {
+  const  now = parseInt(moment().format('YYYYMMDDHHmmss')) ;
+  const expireTime = getExpireTime() || now
+  
+  if (now - expireTime >= -10 && url!=='/login') {
+    
+    Modal.error({
+      title: '登录已过期',
+      content: '很抱歉，登录已过期，请重新登录',
+      okText: '重新登录',
+      mask: false,
+      onOk: () => {
+        return new Promise((resolve, reject) => {
+          clearLocalStorage()
+          location = '/user/login';
+        });
+      }
+    });
   }
-  return response;
+
+  const token = getToken()
+
+
+  const headers = {
+    'Content-Type' :listInFormEncode.includes(url) ? 'application/x-www-form-urlencoded' : 'application/json',
+    Authentication: token || ''
+
+  }
+  return {
+    url: `${baseUrl}${url}`,
+    options: {
+      ...options,
+      headers
+    },
+  };
 });
+
+
 export default request;

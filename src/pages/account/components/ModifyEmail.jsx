@@ -25,29 +25,7 @@ class ModifyEmail extends Component {
     }
   }
 
-  handleClick = () => {
-    const { validateFields } = this.props.form;
-    validateFields([formFiredsKeys.email], (err, values) => {
-      if (!err) {
-        this.setState({
-          btnLoading: true,
-        });
-        emailVerifyCode({
-          email: values[formFiredsKeys.email],
-          verifyCodeType: 1, // 修改
-        }).then(res => {
-          const { success } = res;
-          this.setState({
-            btnLoading: false,
-          });
-          if (success) {
-            message.success('success');
-            this.countDown();
-          }
-        });
-      }
-    });
-  };
+
 
   countDown = () => {
     this.setState({
@@ -89,65 +67,17 @@ class ModifyEmail extends Component {
           message: formatMessage({ id: 'app.account.email-format-error-message' }),
         },
       ],
-      verifyCode: [
-        {
-          required: true,
-          message: formatMessage({ id: 'app.account.verifyCode-message' }),
-        },
-      ],
-      password: [
-        {
-          required: true,
-          message: formatMessage({ id: 'app.account.account-password-message' }),
-        },
-        {
-          validator: pswValidator,
-        },
-      ],
+    
     };
 
     return (
       <Fragment>
         <FormItem
-          label={formatMessage({
-            id: 'app.account.email',
-          })}
+          label='邮箱'
         >
-          {getFieldDecorator(formFiredsKeys.email, {
+          {getFieldDecorator('email', {
             rules: rules.email,
           })(<Input placeholder={formatMessage({ id: 'yeeorder.please-input' })} />)}
-        </FormItem>
-        <FormItem label={formatMessage({ id: 'app.account.verifyCode' })}>
-          <Row type='flex' justify='space-between'>
-            <Col span={12}>
-              {getFieldDecorator(formFiredsKeys.verifyCode, {
-                rules: rules.verifyCode,
-              })(<Input placeholder={formatMessage({ id: 'yeeorder.please-input' })} />)}
-            </Col>
-            <Col span={10} style={{ textAlign: 'right' }}>
-              <Button
-                type='primary'
-                loading={btnLoading}
-                onClick={this.handleClick}
-                disabled={buttonText !== formFiredsKeys.sendCode}
-                block
-              >
-                {buttonText === formFiredsKeys.sendCode
-                  ? formatMessage({ id: 'yeeorder.send-code' })
-                  : buttonText}
-              </Button>
-            </Col>
-          </Row>
-        </FormItem>
-        <FormItem
-          label={formatMessage({
-            id: 'app.account.account-password',
-          })}
-        >
-          {getFieldDecorator(formFiredsKeys.password, {
-            rules: rules.password,
-            validateFirst: true,
-          })(<Password placeholder={formatMessage({ id: 'yeeorder.please-input' })} />)}
         </FormItem>
       </Fragment>
     );

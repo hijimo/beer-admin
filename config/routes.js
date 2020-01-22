@@ -1,15 +1,14 @@
 const routes = [
-  // {
-  //   path: '/user',
-  //   component: '../layouts/UserLayout',
-  //   routes: [
-  //     {
-  //       name: 'login',
-  //       path: '/user/login',
-  //       component: './user/login',
-  //     },
-  //   ],
-  // },
+  {
+    path: '/user',
+    routes: [
+      {
+        name: 'login',
+        path: '/user/login',
+        component: './user/login',
+      },
+    ],
+  },
   {
     path: '/',
     component: '../layouts/SecurityLayout',
@@ -23,10 +22,25 @@ const routes = [
             redirect: '/home',
           },
           {
+            path: '/store',
+            name: 'store',
+            icon: 'audit',
+            Routes: ['sm-common/components/PageAuthorized'],
+            resourceKey: 'store',
+            routes: [
+              {
+                path: '/store',
+                name: 'store Management',
+                component: './store/list',
+                resourceKey: 'store',
+              },
+            ],
+          },
+          {
             path: '/home',
             name: 'Home',
             icon: 'home',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             component: './home',
             resourceKey: 'home',
           },
@@ -34,7 +48,7 @@ const routes = [
             path: '/product',
             name: 'Product Management',
             icon: 'apartment',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'product',
             routes: [
               {
@@ -85,7 +99,7 @@ const routes = [
             path: '/rfq',
             name: 'RFQ',
             icon: 'audit',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'rfq',
             routes: [
               {
@@ -114,7 +128,7 @@ const routes = [
             path: '/po',
             name: 'PO',
             icon: 'audit',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'po',
             routes: [
               {
@@ -136,7 +150,7 @@ const routes = [
             path: '/QCManagement',
             name: 'Quality Control',
             icon: 'audit',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'qc',
             routes: [
               {
@@ -159,7 +173,7 @@ const routes = [
             name: 'Sample Management',
             icon: 'user',
             component: './sample/sampleManagement',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'sample',
           },
           {
@@ -167,7 +181,7 @@ const routes = [
             hideInMenu: true,
             name: 'Sample Details',
             component: './sample/detail',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'sampleDetail',
           },
           {
@@ -175,7 +189,7 @@ const routes = [
             name: 'inquiry',
             icon: 'smile',
             component: './inquiry/list',
-            // Routes: ['common/components/PageAuthorized'],
+            // Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'inquiry',
           },
           {
@@ -183,14 +197,14 @@ const routes = [
             name: 'detail',
             component: './inquiry/detail',
             hideInMenu: true,
-            // Routes: ['common/components/PageAuthorized'],
+            // Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'inquiryDetail',
           },
           {
             path: '/expo',
             name: 'Expo',
             icon: 'audit',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'expo',
             routes: [
               {
@@ -215,14 +229,14 @@ const routes = [
             name: 'Favorites',
             icon: 'audit',
             component: './favorites',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'favoriteList',
           },
           {
             path: '/websiteManagement',
             icon: 'layout',
             name: 'Website Management',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'decoration',
             routes: [
               {
@@ -246,7 +260,7 @@ const routes = [
             path: '/myCompany',
             name: 'My Company',
             icon: 'solution',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'company',
             routes: [
               {
@@ -293,14 +307,14 @@ const routes = [
             name: 'Message',
             icon: 'user',
             component: './message',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'messageList',
           },
           {
             path: '/authManage',
             name: 'authManage',
             icon: 'smile',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'auth',
             routes: [
               {
@@ -326,7 +340,7 @@ const routes = [
             path: '/account',
             name: 'Account',
             icon: 'user',
-            Routes: ['common/components/PageAuthorized'],
+            Routes: ['sm-common/components/PageAuthorized'],
             component: './account',
             resourceKey: 'accountDetail',
           },

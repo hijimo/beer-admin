@@ -2,9 +2,9 @@ import { Card, Divider } from 'antd';
 import React, { PureComponent, Fragment } from 'react';
 import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import _get from 'lodash/get'
 import { connect } from 'dva';
 import styles from './style.less';
-import AvatarView from './components/AvatarView';
 import UpdateDialog from './components/UpdateDialog';
 import SecurityView from './components/Security';
 
@@ -34,10 +34,10 @@ class Account extends PureComponent {
     const { userInfo } = this.props;
     return [
       {
-        title: formatMessage({ id: 'app.account.English-name' }),
+        title: '用户昵称',
         description: (
           <Fragment>
-            {formatMessage({ id: 'app.account.English-name' })}：{userInfo ? userInfo.userName : ''}
+            {_get(userInfo, 'realName')}
           </Fragment>
         ),
         actions: [
@@ -50,7 +50,7 @@ class Account extends PureComponent {
         title: formatMessage({ id: 'app.account.email' }),
         description: (
           <Fragment>
-            {formatMessage({ id: 'app.account.email' })}: {userInfo ? userInfo.userEmail : ''}
+            {_get(userInfo, 'email')}
           </Fragment>
         ),
         actions: [
@@ -60,10 +60,10 @@ class Account extends PureComponent {
         ],
       },
       {
-        title: formatMessage({ id: 'app.account.telephone' }),
+        title: '手机',
         description: (
           <Fragment>
-            {formatMessage({ id: 'app.account.telephone' })}: {userInfo ? userInfo.userMobile : ''}
+             {_get(userInfo, 'mobile')}
           </Fragment>
         ),
         actions: [
@@ -74,7 +74,7 @@ class Account extends PureComponent {
       },
       {
         title: formatMessage({ id: 'app.account.password' }),
-        description: `${formatMessage({ id: 'app.account.password' })}：********`,
+        description: `********`,
         actions: [
           <a key='Modify' onClick={() => this.handleClick('password')}>
             <FormattedMessage id='app.account.modify' defaultMessage='Modify' />
@@ -95,10 +95,7 @@ class Account extends PureComponent {
               title={<FormattedMessage id='app.account.title' defaultMessage='Account' />}
               bordered={false}
             >
-              <div className={styles.right}>
-                <AvatarView dispatch={dispatch} avatar={userInfo.userPhoto} />
-              </div>
-              <Divider className={styles.divider} />
+
               <SecurityView data={this.getData()} />
             </Card>
           </GridContent>

@@ -1,4 +1,5 @@
 import common from '@common/locales/zh-CN/index';
+import component from './zh-CN/component';
 import globalHeader from './zh-CN/globalHeader';
 import menu from './zh-CN/menu';
 import pwa from './zh-CN/pwa';
@@ -23,6 +24,7 @@ export default {
   ...pwa,
   ...yeeorder,
   ...common,
+  ...component,
   ...layout,
   ...otherCommon,
 };

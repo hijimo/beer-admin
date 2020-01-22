@@ -25,36 +25,17 @@ const UserSearch = props => {
       <Form layout='inline'>
         <Row gutter={rowGutter}>
           <Col md={8} sm={24}>
-            <FormItem label={formatMessage({ id: 'page.user.table.label.userEmail' })}>
-              {getFieldDecorator('email', {
+            <FormItem label='用户名'>
+              {getFieldDecorator('username', {
                 initialValue: '',
               })(
                 <Input
-                  placeholder={formatMessage({ id: 'page.user.input.placeholder.userEmail' })}
+                  placeholder='请输入用户名'
                 />,
               )}
             </FormItem>
           </Col>
-          <Col md={8} sm={24}>
-            <FormItem label={formatMessage({ id: 'page.user.table.label.userMobile' })}>
-              {getFieldDecorator('mobile', {
-                initialValue: '',
-              })(
-                <Input
-                  placeholder={formatMessage({ id: 'page.user.input.placeholder.userMobile' })}
-                />,
-              )}
-            </FormItem>
-          </Col>
-          <Col md={8} sm={24}>
-            <FormItem label={formatMessage({ id: 'page.user.table.label.userNo' })}>
-              {getFieldDecorator('userNo', {
-                initialValue: '',
-              })(
-                <Input placeholder={formatMessage({ id: 'page.user.input.placeholder.userNo' })} />,
-              )}
-            </FormItem>
-          </Col>
+       
         </Row>
 
         <Row gutter={rowGutter}>

@@ -22,35 +22,16 @@ class ModifyName extends PureComponent {
       firstname: [
         {
           required: true,
-          message: formatMessage({ id: 'app.account.first-name-message' }),
-        },
-        {
-          max: 500,
-          message: lenErrMessage({ max: 500 }),
-        },
-        {
-          validator: specialCharValidator,
+          message: '用户昵称不能为空',
         },
       ],
-      lastName: [
-        {
-          required: true,
-          message: formatMessage({ id: 'app.account.last-name-message' }),
-        },
-        {
-          max: 500,
-          message: lenErrMessage({ max: 500 }),
-        },
-        {
-          validator: specialCharValidator,
-        },
-      ],
+      
     };
 
     return (
       <Fragment>
-        <FormItem label={formatMessage({ id: 'app.account.first-name' })}>
-          {getFieldDecorator(formFiredsKeys.firstName, {
+        <FormItem label='用户昵称'>
+          {getFieldDecorator('realName', {
             // initialValue: firstName,
             rules: rules.firstname,
             validateFirst: true,
@@ -61,18 +42,7 @@ class ModifyName extends PureComponent {
             />,
           )}
         </FormItem>
-        <FormItem label={formatMessage({ id: 'app.account.last-name' })}>
-          {getFieldDecorator(formFiredsKeys.lastName, {
-            // initialValue: lastName,
-            rules: rules.lastName,
-            validateFirst: true,
-          })(
-            <Input
-              placeholder={formatMessage({ id: 'yeeorder.please-input' })}
-              autoComplete='off'
-            />,
-          )}
-        </FormItem>
+       
       </Fragment>
     );
   }

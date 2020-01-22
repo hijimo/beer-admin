@@ -1,4 +1,5 @@
 import common from '@common/locales/cs-CZ/index';
+import component from './cs-CZ/component';
 import globalHeader from './cs-CZ/globalHeader';
 import menu from './cs-CZ/menu';
 import pwa from './cs-CZ/pwa';
@@ -21,6 +22,7 @@ export default {
   ...pwa,
   ...yeeorder,
   ...common,
+  ...component,
   ...layout,
   ...otherCommon,
 };

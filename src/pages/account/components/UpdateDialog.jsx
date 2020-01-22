@@ -3,10 +3,12 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import React, { PureComponent } from 'react';
 import {
   updateUserEmail,
-  updateUserPassword,
   updateUserName,
   updateUserPhone,
 } from '@/services/account';
+
+import {putEditPwd,putEditUser} from '@/services/user'
+import {getUser} from '@/utils/ls'
 import ModifyName from './ModifyName';
 import ModifyEmail from './ModifyEmail';
 import ModifyTel from './ModifyTel';
@@ -37,7 +39,20 @@ class UpdateDialog extends PureComponent {
     const id = titleMap[type] || 'app.account.modify';
     return formatMessage({ id });
   };
+  getUserInfo = () => {
+    const u = getUser()
 
+    return {
+      username: u.username,
+      userId: u.userId,
+      roleId: u.roleId,
+      status: u.status,
+      ssex: u.ssex,
+      mobile: u.mobile,
+      email: u.email,
+      realName: u.realName,
+    }
+  }
   handleOk = event => {
     event.preventDefault();
     const { form, type } = this.props;
@@ -60,45 +75,57 @@ class UpdateDialog extends PureComponent {
   };
 
   handleChangeMobile(values) {
-    updateUserPhone(values).then(({ success }) => {
-      if (success) {
+    
+    putEditUser({
+     ... this.getUserInfo(),
+      ...values,
+    }).then(( res) => {
+      
         message.success('success');
-        this.fetchUserInfo();
-        this.handleCancel();
-      }
+        setTimeout(()=>{
+          window.location.reload()
+        }, 1500)
+      
     });
   }
 
   handleChangePassword({ oldPassword, userPassword }) {
-    updateUserPassword({ oldPassword, userPassword }).then(({ success }) => {
-      if (success) {
+    const u = getUser()
+    putEditPwd({ username: u.username, password:userPassword }).then((res) => {
         message.success('success');
-        this.handleCancel();
+        setTimeout(()=>{
+          window.location = '/user/login'
+        }, 1500)
         // todo需要跳转到登录页重新登录
-      }
-    });
+      })
   }
 
   handleChangeUserEmail(values) {
-    updateUserEmail(values).then(({ success }) => {
-      if (success) {
-        message.success('success');
-        this.fetchUserInfo();
-        this.handleCancel();
-        // todo需要跳转到登录页重新登录
-      }
-    });
+    putEditUser({
+      ... this.getUserInfo(),
+       ...values,
+     }).then(( res) => {
+       
+         message.success('success');
+         setTimeout(()=>{
+           window.location.reload()
+         }, 1500)
+       
+     });
   }
 
   handleModifyName(values) {
-    updateUserName(values).then(res => {
-      const { success } = res;
-      if (success) {
-        message.success('success');
-        this.fetchUserInfo();
-        this.handleCancel();
-      }
-    });
+    putEditUser({
+      ... this.getUserInfo(),
+       ...values,
+     }).then(( res) => {
+       
+         message.success('success');
+         setTimeout(()=>{
+           window.location.reload()
+         }, 1500)
+       
+     });
   }
 
   fetchUserInfo() {

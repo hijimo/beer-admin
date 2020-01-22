@@ -2,7 +2,7 @@ import { Button, Form, Input, Row, Col, message } from 'antd';
 import { formatMessage } from 'umi-plugin-react/locale';
 import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
-import { mobileVerifyCode } from '@/services/account';
+import { putUserInfo } from '@/services/user';
 import { pswValidator } from '@/utils/utils';
 
 const FormItem = Form.Item;
@@ -29,29 +29,7 @@ class ModifyTel extends Component {
     }
   }
 
-  handleClick = () => {
-    const { validateFields } = this.props.form;
-    validateFields([formFiredsKeys.mobile], (err, values) => {
-      if (!err) {
-        this.setState({
-          btnLoading: true,
-        });
-        mobileVerifyCode({
-          mobile: values[formFiredsKeys.mobile],
-          verifyCodeType: 1, // 修改
-        }).then(res => {
-          const { success } = res;
-          this.setState({
-            btnLoading: false,
-          });
-          if (success) {
-            message.success('success');
-            this.countDown();
-          }
-        });
-      }
-    });
-  };
+  
 
   countDown = () => {
     this.setState({
@@ -80,7 +58,6 @@ class ModifyTel extends Component {
       form: { getFieldDecorator },
     } = this.props;
     const { buttonText, btnLoading } = this.state;
-
     const rules = {
       mobile: [
         {
@@ -91,22 +68,7 @@ class ModifyTel extends Component {
           pattern: /^1\d{10}$/,
           message: formatMessage({ id: 'app.account.new-telephone-format-error-message' }),
         },
-      ],
-      verifyCode: [
-        {
-          required: true,
-          message: formatMessage({ id: 'app.account.verifyCode-message' }),
-        },
-      ],
-      password: [
-        {
-          required: true,
-          message: formatMessage({ id: 'app.account.account-password-message' }),
-        },
-        {
-          validator: pswValidator,
-        },
-      ],
+      ]
     };
 
     return (
@@ -116,7 +78,7 @@ class ModifyTel extends Component {
             id: 'app.account.new-telephone',
           })}
         >
-          {getFieldDecorator(formFiredsKeys.mobile, {
+          {getFieldDecorator('mobile', {
             // initialValue: userMobile,
             rules: rules.mobile,
           })(
@@ -126,42 +88,7 @@ class ModifyTel extends Component {
             />,
           )}
         </FormItem>
-        <FormItem
-          label={formatMessage({
-            id: 'app.account.verifyCode',
-          })}
-        >
-          <Row type='flex' justify='space-between'>
-            <Col span={12}>
-              {getFieldDecorator(formFiredsKeys.verifyCode, {
-                rules: rules.verifyCode,
-              })(<Input placeholder={formatMessage({ id: 'yeeorder.please-input' })} />)}
-            </Col>
-            <Col span={10} style={{ textAlign: 'right' }}>
-              <Button
-                type='primary'
-                loading={btnLoading}
-                onClick={this.handleClick}
-                disabled={buttonText !== formFiredsKeys.sendCode}
-                block
-              >
-                {buttonText === formFiredsKeys.sendCode
-                  ? formatMessage({ id: 'yeeorder.send-code' })
-                  : buttonText}
-              </Button>
-            </Col>
-          </Row>
-        </FormItem>
-        <FormItem
-          label={formatMessage({
-            id: 'app.account.account-password',
-          })}
-        >
-          {getFieldDecorator(formFiredsKeys.password, {
-            rules: rules.password,
-            validateFirst: true,
-          })(<Password placeholder={formatMessage({ id: 'yeeorder.please-input' })} />)}
-        </FormItem>
+        
       </Fragment>
     );
   }

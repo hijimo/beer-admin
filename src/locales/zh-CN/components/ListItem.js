@@ -1,0 +1,25 @@
+export default {
+  'component.listitem.label.offeringFields': '经营范围',
+  'component.listitem.label.sourceFields': '采购范围',
+  'component.listitem.label.sizeOfStore': '店铺规模',
+  'component.listitem.label.storeNumber': '店铺数量',
+  'component.listitem.label.salesRevenue': '销售额',
+  'component.listitem.label.quantitiesInTEUs': '年进口集装箱数量',
+  'component.listitem.label.business': '商业',
+  'component.listitem.label.tradeVolume6Month': '半年交易额',
+  'component.listitem.label.difot': 'DIFOT',
+  'component.listitem.label.qcPassRate': '质检合格率',
+  'component.listitem.label.avgLeadTime': '平均交货时间',
+  'component.listitem.label.location': '地区',
+  'component.listitem.label.contactSupplier': '联系商家',
+  'component.listitem.label.submitError': '该商品已失效',
+  'component.listitem.label.ok': '确认',
+
+  // rfq
+  'component.listitem.label.quantity': '数量',
+  'component.listitem.label.country': '国家',
+  'component.listitem.label.timeLeft': '剩余时间',
+  'component.listitem.label.quoteNow': '现在报价',
+  'component.listitem.label.quoted': '已报价',
+  'component.listitem.label.quotesLeft': '报价剩余席位',
+};

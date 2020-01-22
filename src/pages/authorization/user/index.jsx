@@ -7,7 +7,7 @@ import GeneralTable from '@common/components/GeneralTable';
 import ActionList from '@common/components/ActionList';
 import UserSearch from './components/UserSearch';
 import AddOrEditUser from './components/AddOrEditUser';
-import { deleteUser, updateUserStatus } from '@/services/userManage';
+import { deleteUserById, putResetPwd } from '@/services/user';
 
 const userStatusMap = {
   1: 'success',
@@ -17,6 +17,7 @@ const { Paragraph } = Typography;
 const UserManage = props => {
   const [commonParams, setCommonParams] = useState(null);
   const [currId, setCurrId] = useState(undefined);
+  const [currItem, setCurrItem] = useState(undefined)
   const [visible, setVisible] = useState(false);
 
   /**
@@ -24,9 +25,9 @@ const UserManage = props => {
    */
   const getDataList = (pagination = null) => {
     props.dispatch({
-      type: 'authUser/getDataList',
+      type: 'user/getDataList',
       payload: {
-        pageNo: pagination && pagination.current ? pagination.current : props.pagination.current,
+        pageNum: pagination && pagination.current ? pagination.current : props.pagination.current,
         pageSize:
           pagination && pagination.pageSize ? pagination.pageSize : props.pagination.pageSize,
         opType: 1,
@@ -39,6 +40,8 @@ const UserManage = props => {
     getDataList({ current: 1, pageSize: props.pagination.pageSize || 10 });
   }, [commonParams]);
 
+
+  console.log('pagination:',props.pagination)
   /**
    * 搜索
    */
@@ -64,15 +67,15 @@ const UserManage = props => {
       cancelText: formatMessage({ id: 'yeeorder.Cancel' }),
       okType: 'danger',
       onOk: () => {
-        deleteUser({ userNo: record.userNo }).then(res => {
-          if (res.success) {
+        deleteUserById(record.userId).then(res => {
+          
             message.success(formatMessage({ id: 'yeeorder.success' }));
             if (props.data.length === 0 && props.pagination.current > 1) {
               getDataList({ current: props.pagination.current - 1 });
             } else {
               getDataList();
             }
-          }
+          
         });
       },
     });
@@ -81,8 +84,9 @@ const UserManage = props => {
   /**
    * 新增 / 编辑
    */
-  const addOrEditItem = id => {
-    setCurrId(id);
+  const addOrEditItem = record => {
+    setCurrId(record ? record.userId : null);
+    setCurrItem(record ? JSON.parse(JSON.stringify(record)): undefined)
     setVisible(true);
   };
 
@@ -91,38 +95,16 @@ const UserManage = props => {
    */
   const hideModal = () => {
     setCurrId(undefined);
+    setCurrItem(undefined)
     setVisible(false);
   };
 
-  /**
-   * 启用 / 禁用
-   */
-  const changeStatus = (flag, record) => {
-    Modal.confirm({
-      title: flag
-        ? formatMessage({ id: 'page.user.label.enable.user' })
-        : formatMessage({ id: 'page.user.label.unEnable.user' }),
-      content: flag
-        ? formatMessage({ id: 'page.user.label.sureEnable.user' })
-        : formatMessage({ id: 'page.user.label.sureUnEnable.user' }),
-      okText: formatMessage({ id: 'yeeorder.Confirm' }),
-      cancelText: formatMessage({ id: 'yeeorder.Cancel' }),
-      okType: 'danger',
-      onOk: () => {
-        updateUserStatus({ userNo: record.userNo }).then(res => {
-          if (res.success) {
-            message.success(formatMessage({ id: 'yeeorder.success' }));
-            getDataList();
-          }
-        });
-      },
-    });
-  };
+
 
   /**
    * 重置密码
    */
-  /*  const resetPwd = record => {
+    const resetPwd = record => {
     Modal.confirm({
       title: formatMessage({ id: 'page.user.label.resetPwd.user' }),
       content: formatMessage({ id: 'page.user.label.sureResetPwd.user' }),
@@ -130,16 +112,15 @@ const UserManage = props => {
       cancelText: formatMessage({ id: 'yeeorder.Cancel' }),
       okType: 'danger',
       onOk: () => {
-        updateUserStatus({ userNo: record.userNo }).then(res => {
-          if (res.success) {
-            message.success(formatMessage({ id: 'yeeorder.success' }));
+        putResetPwd({ usernames: record.username }).then(res => {
+            message.success('成功重置为默认密码:123456');
             getDataList();
-          }
+          
         });
 
       },
     });
-  }; */
+  }; 
 
   const columns = [
     {
@@ -155,14 +136,14 @@ const UserManage = props => {
     {
       className: 'nowrap',
       title: formatMessage({ id: 'page.user.table.label.userNo' }),
-      dataIndex: 'userNo',
+      dataIndex: 'userId',
       fixed: 'left',
       width: 10,
     },
     {
       className: 'nowrap',
       title: formatMessage({ id: 'page.user.table.label.userName' }),
-      dataIndex: 'userName',
+      dataIndex: 'username',
     },
     // {
     //   className: 'nowrap',
@@ -172,34 +153,15 @@ const UserManage = props => {
     {
       className: 'nowrap',
       title: formatMessage({ id: 'page.user.table.label.userMobile' }),
-      dataIndex: 'userMobile',
+      dataIndex: 'mobile',
     },
     {
       title: formatMessage({ id: 'page.user.table.label.userRoleItems' }),
-      dataIndex: 'roleInfoItem',
+      dataIndex: 'roleName',
       width: 300,
-      render: val => {
-        if (val && val.length) {
-          const arr = val.map(item => item.roleName);
-          const text = arr.join('、');
-          return (
-            <Tooltip placement='topLeft' title={text}>
-              <Paragraph ellipsis={{ rows: 2, expandable: false }}>{text}</Paragraph>
-            </Tooltip>
-          );
-        }
-        return '--';
-      },
+      
     },
-    {
-      className: 'nowrap',
-      title: formatMessage({ id: 'page.user.table.label.userStatus' }),
-      dataIndex: 'userStatusText',
-      render: (val, record) => {
-        const status = userStatusMap[record.userStatus] || '';
-        return <Badge status={status} text={val} />;
-      },
-    },
+
     {
       className: 'nowrap',
       title: formatMessage({ id: 'components.table.column.action' }),
@@ -208,27 +170,22 @@ const UserManage = props => {
       fixed: 'right',
       render: (text, record) => {
         const btnList = [
-          <a onClick={() => addOrEditItem(record.userNo)}>
+          <a onClick={() => addOrEditItem(record)}>
             {formatMessage({ id: 'components.table.action.edit' })}
           </a>,
           <a onClick={() => deleteItem(record)}>
             {formatMessage({ id: 'components.table.action.delete' })}
           </a>,
-          <a onClick={() => changeStatus(true, record)}>
-            {formatMessage({ id: 'components.table.action.enable' })}
-          </a>,
-          <a onClick={() => changeStatus(false, record)}>
-            {formatMessage({ id: 'components.table.action.unEnable' })}
-          </a>,
-          // <a onClick={() => resetPwd(record)}>
-          //   {formatMessage({ id: 'components.table.action.resetPwd' })}
-          // </a>
+          
+          <a onClick={() => resetPwd(record)}>
+            {formatMessage({ id: 'components.table.action.resetPwd' })}
+          </a>
         ];
         const shouBtnList = {
           1: [btnList[0], btnList[1], btnList[3]],
           2: [btnList[0], btnList[1], btnList[2]],
         };
-        return <ActionList actions={shouBtnList[record.userStatus]} />;
+        return <ActionList actions={btnList} />;
       },
     },
   ];
@@ -243,7 +200,7 @@ const UserManage = props => {
           </Button>
         </Row>
         <GeneralTable
-          rowKey='userNo'
+          rowKey='userId'
           scroll={{ x: true }}
           loading={props.loading}
           dataSource={props.data}
@@ -254,6 +211,7 @@ const UserManage = props => {
         <AddOrEditUser
           visible={visible}
           currId={currId}
+          currItem={currItem}
           hideModal={hideModal}
           getDataList={getDataList}
         />
@@ -262,10 +220,10 @@ const UserManage = props => {
   );
 };
 
-const mapStateToProps = ({ authUser, loading }) => ({
-  data: authUser.data,
-  pagination: authUser.pagination,
-  loading: loading.effects['authUser/getDataList'],
+const mapStateToProps = ({ user, loading }) => ({
+  data: user.data,
+  pagination: user.pagination,
+  loading: loading.effects['user/getDataList'],
 });
 
 export default connect(mapStateToProps)(UserManage);

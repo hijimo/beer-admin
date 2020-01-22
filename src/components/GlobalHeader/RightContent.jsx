@@ -12,7 +12,6 @@ const GlobalHeaderRight = props => {
   if (theme === 'dark' && layout === 'topmenu') {
     className = `${styles.right}  ${styles.dark}`;
   }
-
   return (
     <div className={className}>
       {/* <HeaderSearch

@@ -1,35 +1,31 @@
 @import '~antd/es/style/themes/default.less';
 
 .main {
-  width: 368px;
-  margin: 0 auto;
-  @media screen and (max-width: @screen-sm) {
-    width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15vh 5vw 0 10.5vw;
+  background-image: url('@/assets/user/login-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  min-height: 100vh;
+  box-sizing: border-box;
+  .loginBox {
+    box-sizing: border-box;
+    width: 438px;
+    padding: 44px 33px 73px 33px;
+    background: rgba(255, 255, 255, 1);
   }
-
-  .icon {
-    margin-left: 16px;
-    color: rgba(0, 0, 0, 0.2);
-    font-size: 24px;
-    vertical-align: middle;
-    cursor: pointer;
-    transition: color 0.3s;
-
-    &:hover {
-      color: @primary-color;
-    }
+  .logoBig {
+    width: 583px;
+    width: 30.36vw;
+    height: 117px;
+    // 使用vw,保持宽高比。
+    height: 6vw;
+    visibility: hidden;
   }
-
-  .other {
-    margin-top: 24px;
-    line-height: 22px;
-    text-align: left;
-
-    .register {
-      float: right;
-    }
-  }
-
   :global {
     .antd-pro-login-submit {
       width: 100%;

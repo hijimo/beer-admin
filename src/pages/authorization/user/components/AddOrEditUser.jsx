@@ -3,7 +3,7 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import { Modal, Form, Input, Select, message } from 'antd';
 // import { Modal, Form, Input, Select, TreeSelect, message } from 'antd';
 import { emailReg } from '@/utils/common';
-import { getChildrenInfo, addUser } from '@/services/userManage';
+import {postAddUser,putEditUser} from '@/services/user'
 // import { getDeptList } from '@/services/deptManage';
 import { getRoleList } from '@/services/roleManage';
 
@@ -21,32 +21,9 @@ const formItemLayout = {
 const { Option } = Select;
 
 const AddOrEditUser = props => {
-  const [currItem, setCurrItem] = useState({});
+  const {currItem = {}} = props
   // const [depOpt, setDepOpt] = useState([]);
   const [roleOpt, setRoleOpt] = useState([]);
-  useEffect(() => {
-    if (props.currId) {
-      getChildrenInfo({ userNo: props.currId }).then(res => {
-        if (res.success) {
-          setCurrItem(res.data);
-        }
-      });
-    }
-  }, [props.currId]);
-
-  useEffect(() => {
-    // getDeptList().then(res => {
-    //   console.log(res);
-    //   if (res.success) {
-    //     setDepOpt(res.data.records);
-    //   }
-    // });
-    getRoleList({ pageNo: 1, pageSize: 100, freeze: false }).then(res => {
-      if (res.success) {
-        setRoleOpt(res.data.records);
-      }
-    });
-  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -54,19 +31,18 @@ const AddOrEditUser = props => {
       if (!err) {
         const params = {
           ...values,
-          roleNoList: [values.roleNoList],
+          
         };
         if (props.currId) {
-          params.userNo = props.currId;
+          params.userId = props.currId;
         }
-        addUser(params).then(res => {
-          if (res.success) {
+        const api = props.currId ? putEditUser : postAddUser
+        api(params).then(res => {
             message.success(formatMessage({ id: 'yeeorder.success' }));
             props.getDataList();
-            setCurrItem({});
             props.form.resetFields();
             props.hideModal();
-          }
+          
         });
       }
     });
@@ -95,81 +71,77 @@ const AddOrEditUser = props => {
       cancelText={formatMessage({ id: 'yeeorder.Cancel' })}
     >
       <Form {...formItemLayout}>
-        <Form.Item label={formatMessage({ id: 'page.user.label.firstName' })}>
-          {getFieldDecorator('firstName', {
-            initialValue: currItem.firstName || '',
+        <Form.Item label='用户名'>
+          {getFieldDecorator('username', {
+            initialValue: currItem.username || '',
             rules: [
               {
                 required: true,
-                message: formatMessage({ id: 'page.user.label.placeholder.firstName' }),
+                message: '用户名不能为空'
               },
             ],
           })(
             <Input
               maxLength={20}
-              placeholder={formatMessage({ id: 'page.user.label.placeholder.firstName' })}
+              placeholder='请输入用户名'
             />,
           )}
         </Form.Item>
-        <Form.Item label={formatMessage({ id: 'page.user.label.lastName' })}>
-          {getFieldDecorator('lastName', {
-            initialValue: currItem.lastName || '',
+        <Form.Item label='真实姓名'>
+          {getFieldDecorator('realName', {
+            initialValue: currItem.realName || '',
             rules: [
               {
                 required: true,
-                message: formatMessage({ id: 'page.user.label.placeholder.lastName' }),
+                message: '真实姓名不能为空',
               },
             ],
           })(
             <Input
               maxLength={20}
-              placeholder={formatMessage({ id: 'page.user.label.placeholder.lastName' })}
+              placeholder='请输入用户真实姓名'
             />,
           )}
         </Form.Item>
-        <Form.Item label={formatMessage({ id: 'page.user.label.user.mail' })}>
-          {getFieldDecorator('userEmail', {
-            initialValue: currItem.userEmail || '',
+        <Form.Item label='密码'>
+          {getFieldDecorator('password', {
             rules: [
               {
-                required: true,
-                message: formatMessage({ id: 'page.user.label.user.mail.placholder' }),
-              },
-              {
-                pattern: emailReg,
-                message: formatMessage({ id: 'page.user.label.user.mail.placholder.tip' }),
+                required: props.currId === undefined ? true : false,
+                message: '密码不能为空',
               },
             ],
           })(
             <Input
-              disabled={!!props.currId}
+            disabled={!!props.currId}
               maxLength={100}
-              placeholder={formatMessage({ id: 'page.user.label.user.mail.placholder' })}
+              type='password'
+              placeholder='请输入用户密码'
             />,
           )}
         </Form.Item>
 
-        {/* {props.currId ? null : (
-          <Form.Item label={formatMessage({ id: 'page.user.label.user.pwd' })}>
-            {getFieldDecorator('password', {
-              initialValue: currItem.password || '',
-              rules: [
-                {
-                  required: true,
-                  message: formatMessage({ id: 'page.user.label.user.pwd.placholder' }),
-                },
-              ],
-            })(
-              <Input.Password
-                maxLength={30}
-                placeholder={formatMessage({ id: 'page.user.label.user.pwd.placholder' })}
-              />,
-            )}
-          </Form.Item>
-        )} */}
-        <Form.Item label={formatMessage({ id: 'page.user.label.user.mobile' })}>
-          {getFieldDecorator('userMobile', {
-            initialValue: currItem.userMobile || '',
+        <Form.Item label='邮箱'>
+          {getFieldDecorator('email', {
+            initialValue: currItem.email || '',
+            rules: [
+              {
+                required: true,
+                message: '邮箱不能为空',
+              },
+            ],
+          })(
+            <Input
+              maxLength={20}
+              placeholder='请输入邮箱'
+            />,
+          )}
+        </Form.Item>
+
+
+        <Form.Item label='手机'>
+          {getFieldDecorator('mobile', {
+            initialValue: currItem.mobile || '',
             rules: [
               {
                 required: true,
@@ -182,9 +154,8 @@ const AddOrEditUser = props => {
             ],
           })(
             <Input
-              disabled={!!props.currId}
               maxLength={20}
-              placeholder={formatMessage({ id: 'page.user.label.user.mobile.placholder' })}
+              placeholder='请输入手机号'
             />,
           )}
         </Form.Item>
@@ -205,31 +176,28 @@ const AddOrEditUser = props => {
             />,
           )}
         </Form.Item> */}
-        <Form.Item label={formatMessage({ id: 'page.user.label.user.role' })}>
-          {getFieldDecorator('roleNoList', {
-            initialValue:
-              currItem && currItem.roleNoList && currItem.roleNoList.length
-                ? currItem.roleNoList[0]
-                : undefined,
-            rules: [
-              {
-                required: true,
-                // type: 'array',
-                message: formatMessage({ id: 'page.user.label.user.role.placholder' }),
-              },
-            ],
+        <Form.Item label={formatMessage({ id: 'page.user.label.user.role' })} style={{display:'none'}}>
+          {getFieldDecorator('roleId', {
+            initialValue:"72"
+              
           })(
-            <Select
-              // mode='multiple'
-              placeholder={formatMessage({ id: 'page.user.label.user.role.placholder' })}
-              allowClear
-            >
-              {roleOpt.map(item => (
-                <Option key={item.roleNo} value={item.roleNo}>
-                  {item.roleName}
-                </Option>
-              ))}
-            </Select>,
+          <Input />
+          )}
+        </Form.Item>
+        <Form.Item label='性别' style={{display:'none'}}>
+          {getFieldDecorator('ssex', {
+            initialValue:0
+              
+          })(
+            <Input />
+          )}
+        </Form.Item>
+        <Form.Item label='状态' style={{display:'none'}}>
+          {getFieldDecorator('status', {
+            initialValue:1
+              
+          })(
+            <Input />
           )}
         </Form.Item>
       </Form>

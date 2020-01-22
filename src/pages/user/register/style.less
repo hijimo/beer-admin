@@ -1,0 +1,51 @@
+// :global {
+//   :local(.pageRegister) {
+//     :local(.registerFooter),
+//     :local(.registerHeader) {
+//       flex: 1;
+//     }
+//   }
+// }
+.pageRegister {
+  align-items: center;
+  background-image: url(@/assets/user/registeredBg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  .pageRegisterContent {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10vh 0;
+  }
+  .accountInfo {
+    margin: 0 0 20px 80px;
+    color: #000;
+    font-size: 16px;
+    strong {
+      margin-left: 20px;
+      font-size: 20px;
+    }
+  }
+  .title {
+    color: #000;
+    font-weight: 700;
+    font-size: 22px;
+  }
+  .pageRegisterSteps {
+    width: 900px;
+  }
+  .formContainer {
+    display: flex;
+    flex: auto;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+  }
+  .buttonSubmit {
+    width: calc(100% - 150px);
+    margin-left: 150px;
+  }
+}
