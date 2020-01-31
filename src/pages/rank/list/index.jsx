@@ -12,11 +12,11 @@ import DateIn18 from '@common/components/DateIn18';
 import useData from '@common/hooks/useData';
 import AddOrEdit from '../components/AddOrEdit';
 import InquiryForm from './SearchForm';
-import { deleteByIds as deleteApi } from '@/services/category';
+import { deleteByIds as deleteApi } from '@/services/rank';
 
 const { Paragraph } = Typography;
 
-const listDataDispatch = 'category/fetchList';
+const listDataDispatch = 'rank/fetchList';
 
 const defaultParams = {
   pageNum: 1,
@@ -24,13 +24,13 @@ const defaultParams = {
   name: '',
 };
 
-const CategoryManagement = props => {
+const RankManagement = props => {
   const {
     location,
     className,
     dispatch,
     loading,
-    category: { data },
+    rank: { data },
   } = props;
 
   const [filters, setFilters] = useState(defaultParams);
@@ -40,7 +40,6 @@ const CategoryManagement = props => {
   const onSearch = value =>
     setFilters(
       produce(filters, draft => {
-        draft.name = value.name || '';
         draft.storeId = value.storeId || '';
       }),
     );
@@ -136,20 +135,13 @@ const CategoryManagement = props => {
     },
     {
       className: 'nowrap',
-      dataIndex: 'picModel',
-      title: '分类图标',
-      render: (val, record) => <img src={_get(record, 'picModel.url')} style={{ width: 40 }} />,
+      dataIndex: 'goodsModel.name',
+      title: '商品名称',
     },
     {
       className: 'nowrap',
-      dataIndex: 'name',
-      title: '分类名称',
-    },
-    {
-      className: 'nowrap',
-      dataIndex: 'sort',
-      width: 80,
-      title: '排序',
+      dataIndex: 'value',
+      title: '排行',
     },
     {
       key: 'action',
@@ -198,7 +190,7 @@ const CategoryManagement = props => {
   );
 };
 
-export default connect(({ category, loading }) => ({
-  category,
+export default connect(({ rank, loading }) => ({
+  rank,
   loading: loading.effects[listDataDispatch],
-}))(CategoryManagement);
+}))(RankManagement);

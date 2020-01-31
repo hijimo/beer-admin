@@ -1,5 +1,10 @@
 export default {
   'menu.Home': '主页',
+  'menu.store.Store Management': '门店管理',
+  'menu.category.Category Management': '分类管理',
+  'menu.country.Country Management': '国家管理',
+  'menu.rank.Rank Management': '排行管理',
+  'menu.goods.Goods Management': '商品管理',
   'menu.Product Management': '商品管理',
   'menu.Add Product': '添加商品',
   'menu.My Product': '我的商品',

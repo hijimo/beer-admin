@@ -19,7 +19,7 @@ const routes = [
         routes: [
           {
             path: '/',
-            redirect: '/home',
+            redirect: '/goods',
           },
           {
             path: '/store',
@@ -30,9 +30,69 @@ const routes = [
             routes: [
               {
                 path: '/store',
-                name: 'store Management',
+                name: 'Store Management',
                 component: './store/list',
                 resourceKey: 'store',
+              },
+            ],
+          },
+          {
+            path: '/category',
+            name: 'category',
+            icon: 'audit',
+            Routes: ['sm-common/components/PageAuthorized'],
+            resourceKey: 'category',
+            routes: [
+              {
+                path: '/category',
+                name: 'Category Management',
+                component: './category/list',
+                resourceKey: 'category',
+              },
+            ],
+          },
+          {
+            path: '/country',
+            name: 'country',
+            icon: 'audit',
+            Routes: ['sm-common/components/PageAuthorized'],
+            resourceKey: 'country',
+            routes: [
+              {
+                path: '/country',
+                name: 'Country Management',
+                component: './country/list',
+                resourceKey: 'country',
+              },
+            ],
+          },
+          {
+            path: '/rank',
+            name: 'rank',
+            icon: 'audit',
+            Routes: ['sm-common/components/PageAuthorized'],
+            resourceKey: 'rank',
+            routes: [
+              {
+                path: '/rank',
+                name: 'Rank Management',
+                component: './rank/list',
+                resourceKey: 'rank',
+              },
+            ],
+          },
+          {
+            path: '/goods',
+            name: 'goods',
+            icon: 'audit',
+            Routes: ['sm-common/components/PageAuthorized'],
+            resourceKey: 'goods',
+            routes: [
+              {
+                path: '/goods',
+                name: 'Goods Management',
+                component: './goods/list',
+                resourceKey: 'goods',
               },
             ],
           },

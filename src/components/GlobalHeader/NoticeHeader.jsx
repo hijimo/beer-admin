@@ -11,9 +11,9 @@ import styles from './index.less';
 class NoticeHeader extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch({
-      type: 'common/fetchNotice',
-    });
+    // dispatch({
+    //   type: 'common/fetchNotice',
+    // });
   }
 
   handleClick = () => router.push('/message');

@@ -12,11 +12,11 @@ import DateIn18 from '@common/components/DateIn18';
 import useData from '@common/hooks/useData';
 import AddOrEdit from '../components/AddOrEdit';
 import InquiryForm from './SearchForm';
-import { deleteByIds as deleteApi } from '@/services/category';
+import { deleteByIds as deleteApi } from '@/services/country';
 
 const { Paragraph } = Typography;
 
-const listDataDispatch = 'category/fetchList';
+const listDataDispatch = 'country/fetchList';
 
 const defaultParams = {
   pageNum: 1,
@@ -24,13 +24,13 @@ const defaultParams = {
   name: '',
 };
 
-const CategoryManagement = props => {
+const CountryManagement = props => {
   const {
     location,
     className,
     dispatch,
     loading,
-    category: { data },
+    country: { data },
   } = props;
 
   const [filters, setFilters] = useState(defaultParams);
@@ -137,13 +137,13 @@ const CategoryManagement = props => {
     {
       className: 'nowrap',
       dataIndex: 'picModel',
-      title: '分类图标',
+      title: '国旗',
       render: (val, record) => <img src={_get(record, 'picModel.url')} style={{ width: 40 }} />,
     },
     {
       className: 'nowrap',
       dataIndex: 'name',
-      title: '分类名称',
+      title: '国家名称',
     },
     {
       className: 'nowrap',
@@ -198,7 +198,7 @@ const CategoryManagement = props => {
   );
 };
 
-export default connect(({ category, loading }) => ({
-  category,
+export default connect(({ country, loading }) => ({
+  country,
   loading: loading.effects[listDataDispatch],
-}))(CategoryManagement);
+}))(CountryManagement);

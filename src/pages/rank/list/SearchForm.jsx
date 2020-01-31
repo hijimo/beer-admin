@@ -50,13 +50,6 @@ const SearchForm = props => {
             )}
           </Form.Item>
         </Col>
-        <Col md={8} sm={24}>
-          <FormItem label='分类名称'>
-            {getFieldDecorator('name')(
-              <Input allowClear placeholder='请输入分类名称' autoComplete='off' />,
-            )}
-          </FormItem>
-        </Col>
       </Row>
       <div style={{ overflow: 'hidden' }}>
         <div style={{ float: 'right', marginBottom: 24 }}>

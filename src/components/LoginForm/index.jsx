@@ -3,7 +3,7 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import { connect } from 'dva';
 import React from 'react';
 import Link from 'umi/link';
-import { setUserInfo } from '@/utils/ls';
+import { setUserInfo, clearLocalStorage } from '@/utils/ls';
 import styles from './index.less';
 
 const FormItem = Form.Item;
@@ -48,17 +48,17 @@ const LoginForm = props => {
       type: 'user/login',
       payload: params,
     }).then(res => {
-      const {  data } = res || {};
+      const { data } = res || {};
       if (data) {
+        clearLocalStorage();
         setUserInfo(data);
         message.success(formatMessage({ id: 'component.loginform.tip.loginSuccess' }));
         if (onSuccess) {
           onSuccess(values);
         }
       }
-        
-        // 3025  账号冻结  3036  角色冻结  3038  公司冻结
-      
+
+      // 3025  账号冻结  3036  角色冻结  3038  公司冻结
     });
   };
 
@@ -105,7 +105,7 @@ const LoginForm = props => {
             />,
           )}
         </FormItem>
-        <div className={styles.loginFormLinkBar} style={{display:'none'}}>
+        <div className={styles.loginFormLinkBar} style={{ display: 'none' }}>
           <Link to='/register' className={styles.loginFormLink}>
             {formatMessage({ id: 'component.loginform.link.joinFree' })}
           </Link>

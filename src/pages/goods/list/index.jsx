@@ -12,11 +12,11 @@ import DateIn18 from '@common/components/DateIn18';
 import useData from '@common/hooks/useData';
 import AddOrEdit from '../components/AddOrEdit';
 import InquiryForm from './SearchForm';
-import { deleteByIds as deleteApi } from '@/services/category';
+import { deleteByIds as deleteApi } from '@/services/goods';
 
 const { Paragraph } = Typography;
 
-const listDataDispatch = 'category/fetchList';
+const listDataDispatch = 'goods/fetchList';
 
 const defaultParams = {
   pageNum: 1,
@@ -24,13 +24,13 @@ const defaultParams = {
   name: '',
 };
 
-const CategoryManagement = props => {
+const GoodsManagement = props => {
   const {
     location,
     className,
     dispatch,
     loading,
-    category: { data },
+    goods: { data },
   } = props;
 
   const [filters, setFilters] = useState(defaultParams);
@@ -42,6 +42,7 @@ const CategoryManagement = props => {
       produce(filters, draft => {
         draft.name = value.name || '';
         draft.storeId = value.storeId || '';
+        draft.categoryId = value.categoryId || '';
       }),
     );
 
@@ -104,7 +105,11 @@ const CategoryManagement = props => {
             JSON.stringify({
               ...record,
               storeId: record.storeModel.id,
-              picModel: record.picModel ? [record.picModel] : [],
+              mainPicModel: record.mainPicModel ? [record.mainPicModel] : [],
+
+              thumbPicModel: record.thumbPicModel ? [record.thumbPicModel] : [],
+              shelfPicModel: record.shelfPicModel ? [record.shelfPicModel] : [],
+              videoFileModel: record.videoFileModel ? [record.videoFileModel] : [],
             }),
           )
         : undefined,
@@ -131,26 +136,34 @@ const CategoryManagement = props => {
     },
     {
       className: 'nowrap',
+      dataIndex: 'thumbPicModel',
+      title: '商品图片',
+      render: (val, record) => (
+        <img src={_get(record, 'thumbPicModel.url')} style={{ width: 40 }} />
+      ),
+    },
+    {
+      className: 'nowrap',
       dataIndex: 'storeModel.name',
       title: '门店名称',
     },
     {
       className: 'nowrap',
-      dataIndex: 'picModel',
-      title: '分类图标',
-      render: (val, record) => <img src={_get(record, 'picModel.url')} style={{ width: 40 }} />,
-    },
-    {
-      className: 'nowrap',
-      dataIndex: 'name',
+      dataIndex: 'categoryModel.name',
       title: '分类名称',
     },
     {
       className: 'nowrap',
-      dataIndex: 'sort',
-      width: 80,
-      title: '排序',
+      dataIndex: 'name',
+      title: '商品名称',
     },
+    {
+      className: 'nowrap',
+      dataIndex: 'price',
+      width: 80,
+      title: '单价',
+    },
+
     {
       key: 'action',
       title: formatMessage({ id: 'yeeorder.action' }),
@@ -198,7 +211,7 @@ const CategoryManagement = props => {
   );
 };
 
-export default connect(({ category, loading }) => ({
-  category,
+export default connect(({ goods, loading }) => ({
+  goods,
   loading: loading.effects[listDataDispatch],
-}))(CategoryManagement);
+}))(GoodsManagement);

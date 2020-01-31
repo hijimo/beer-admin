@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 
-const modul = "/store";
+const modul = '/store';
 
 export function getDetail(id) {
   return request(modul + `/detail/${id}`);
@@ -11,18 +11,17 @@ export function getList(params) {
 export function postCreate(data) {
   return request(modul, {
     method: 'POST',
-    data
+    data,
   });
 }
 export function putUpdate(data) {
   return request(modul, {
     method: 'PUT',
-    data
+    data,
   });
 }
 export function deleteByIds(ids) {
-  return request(`/${modul}/${ids}`, {
+  return request(`${modul}/${ids}`, {
     method: 'DELETE',
-    
   });
 }

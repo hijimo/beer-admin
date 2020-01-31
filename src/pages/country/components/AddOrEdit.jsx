@@ -3,10 +3,9 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import { Modal, Form, Input, InputNumber, Select, message } from 'antd';
 import _map from 'lodash/map';
 import _get from 'lodash/get';
-import TextArea from '@common/components/TextArea/TextArea';
 import useData from '@common/hooks/useData';
 import UploadList from '@common/components/UploadList';
-import { putUpdate, postCreate } from '@/services/category';
+import { putUpdate, postCreate } from '@/services/country';
 import { getList } from '@/services/store';
 
 const formItemLayout = {
@@ -108,25 +107,25 @@ const AddOrEdit = props => {
           )}
         </Form.Item>
 
-        <Form.Item label='分类名称'>
+        <Form.Item label='国家名称'>
           {getFieldDecorator('name', {
             initialValue: currItem.name || '',
             rules: [
               {
                 required: true,
-                message: '分类名称不能为空',
+                message: '国家名称不能为空',
               },
             ],
-          })(<TextArea rows={2} maxLength={120} placeholder='请输入分类名称' />)}
+          })(<Input maxLength={120} placeholder='请输入国家名称' />)}
         </Form.Item>
-        <Form.Item label='分类图片'>
+        <Form.Item label='国旗图片'>
           {getFieldDecorator('picModel', {
             validateFirst: true,
             initialValue: currItem.picModel || [],
             rules: [
               {
                 required: true,
-                message: '请上传分类图片',
+                message: '请上传国旗',
               },
             ],
           })(

@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { Modal, Form, Input, InputNumber, Select, message } from 'antd';
 import _map from 'lodash/map';
 import _get from 'lodash/get';
-import TextArea from '@common/components/TextArea/TextArea';
 import useData from '@common/hooks/useData';
 import UploadList from '@common/components/UploadList';
-import { putUpdate, postCreate } from '@/services/category';
+import { putUpdate, postCreate } from '@/services/rank';
 import { getList } from '@/services/store';
+import { getList as getGoodsList } from '@/services/goods';
 
 const formItemLayout = {
   labelCol: {
@@ -22,9 +22,10 @@ const formItemLayout = {
 
 const { Option } = Select;
 const AddOrEdit = props => {
-  const { currItem = {} } = props;
+  const { form, visible, currItem = {} } = props;
+  const { getFieldDecorator, getFieldValue } = form;
 
-  console.log('props:', props);
+  const timer = useRef(-1);
 
   const dataLoader = useCallback(
     () =>
@@ -39,21 +40,46 @@ const AddOrEdit = props => {
     data: { records = [] },
   } = useData(dataLoader, []);
 
+  const [goodsList, setGoodsList] = useState([]);
+
+  const fetchGoodsList = (opts = {}) => {
+    const { storeId, productId, prodctName } = opts;
+    getGoodsList({ storeId, pageSize: 10, id: productId, name: prodctName }).then(res => {
+      const { data } = res;
+      if (data && data.records) {
+        setGoodsList(_get(data, 'records'));
+      }
+    });
+  };
+
+  const handleStoreIdChange = value => {
+    fetchGoodsList({
+      storeId: value,
+    });
+  };
+  const handleGoodsSearch = value => {
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => {
+      fetchGoodsList({
+        storeId: getFieldValue('storeId') || undefined,
+        prodctName: value,
+      });
+    }, 600);
+  };
+
+  useEffect(() => {
+    const { storeId, productId } = currItem || {};
+    if (storeId && productId) {
+      fetchGoodsList({ storeId, productId });
+    }
+  }, [currItem]);
+
   const handleSubmit = e => {
     e.preventDefault();
-    props.form.validateFieldsAndScroll((err, values) => {
+    form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        const pic = _get(values, 'picModel[0]');
         const params = {
           ...values,
-          picModel: {
-            id: _get(pic, 'id') || null,
-            uid: _get(pic, 'uid'),
-            size: _get(pic, 'size'),
-            name: _get(pic, 'name'),
-            type: _get(pic, 'type'),
-            url: _get(pic, 'url'),
-          },
         };
         if (currItem && currItem.id) {
           params.id = currItem.id;
@@ -62,7 +88,7 @@ const AddOrEdit = props => {
         api(params).then(res => {
           message.success(formatMessage({ id: 'yeeorder.success' }));
           props.getDataList();
-          props.form.resetFields();
+          form.resetFields();
           props.hideModal();
         });
       }
@@ -70,17 +96,15 @@ const AddOrEdit = props => {
   };
 
   const cancelSave = () => {
-    props.form.resetFields();
+    form.resetFields();
     props.hideModal();
   };
 
-  const { getFieldDecorator } = props.form;
-  const { visible } = props;
-
+  console.log('goodsList:', goodsList);
   return (
     <Modal
       width={600}
-      title={props.currItem && props.currItem.id ? '编辑' : '添加'}
+      title={currItem && currItem.id ? '编辑' : '添加'}
       visible={visible}
       onOk={handleSubmit}
       onCancel={cancelSave}
@@ -98,7 +122,13 @@ const AddOrEdit = props => {
               },
             ],
           })(
-            <Select placeholder='请选择门店' allowClear>
+            <Select
+              placeholder='请选择门店'
+              onChange={(value, options) => {
+                handleStoreIdChange(value, options);
+              }}
+              allowClear
+            >
               {_map(records, t => (
                 <Option key={t.id} value={t.id}>
                   {t.name}
@@ -108,40 +138,37 @@ const AddOrEdit = props => {
           )}
         </Form.Item>
 
-        <Form.Item label='分类名称'>
-          {getFieldDecorator('name', {
-            initialValue: currItem.name || '',
+        <Form.Item label='商品'>
+          {getFieldDecorator('productId', {
+            initialValue: currItem.productId || '',
             rules: [
               {
                 required: true,
-                message: '分类名称不能为空',
-              },
-            ],
-          })(<TextArea rows={2} maxLength={120} placeholder='请输入分类名称' />)}
-        </Form.Item>
-        <Form.Item label='分类图片'>
-          {getFieldDecorator('picModel', {
-            validateFirst: true,
-            initialValue: currItem.picModel || [],
-            rules: [
-              {
-                required: true,
-                message: '请上传分类图片',
+                message: '商品不能为空',
               },
             ],
           })(
-            <UploadList
-              accpet='.jpg, .png,.jpeg,.doc,.docx,.pdf'
-              maxLength={1}
-              maxSize={5120}
-              listType='picture-card'
-            />,
+            <Select
+              placeholder='请选择商品'
+              defaultActiveFirstOption={false}
+              showArrow={false}
+              filterOption={false}
+              onSearch={handleGoodsSearch}
+              allowClear
+              showSearch
+            >
+              {_map(goodsList, t => (
+                <Option key={t.id} value={t.id}>
+                  {t.name}
+                </Option>
+              ))}
+            </Select>,
           )}
         </Form.Item>
 
-        <Form.Item label='排序'>
-          {getFieldDecorator('sort', {
-            initialValue: currItem.sort || 0,
+        <Form.Item label='排行'>
+          {getFieldDecorator('value', {
+            initialValue: currItem.value || 0,
           })(<InputNumber min={0} placeholder='排序值，默认为0' />)}
         </Form.Item>
       </Form>

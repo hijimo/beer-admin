@@ -51,9 +51,9 @@ const SearchForm = props => {
           </Form.Item>
         </Col>
         <Col md={8} sm={24}>
-          <FormItem label='分类名称'>
+          <FormItem label='国家名称'>
             {getFieldDecorator('name')(
-              <Input allowClear placeholder='请输入分类名称' autoComplete='off' />,
+              <Input allowClear placeholder='请输入国家名称' autoComplete='off' />,
             )}
           </FormItem>
         </Col>

@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 
-const modul = '/category';
+const modul = '/goods';
 
 export function getDetail(id) {
   return request(modul + `/detail/${id}`);

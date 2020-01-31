@@ -56,7 +56,7 @@ const Message = props => {
         }
         if (dispatch) {
           dispatch({
-            type: 'common/fetchNotice',
+            type: '',
           });
         }
       }
