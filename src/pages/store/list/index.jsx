@@ -1,5 +1,5 @@
-import React, { useState,useEffect, useCallback } from 'react';
-import { Card, Badge, Tooltip, Typography,Row,Button,Modal,message } from 'antd';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Card, Badge, Tooltip, Typography, Row, Button, Modal, message } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { connect } from 'dva';
@@ -15,9 +15,7 @@ import { deleteByIds as deleteApi } from '@/services/store';
 
 const { Paragraph } = Typography;
 
-
-const listDataDispatch = 'store/fetchList'
-
+const listDataDispatch = 'store/fetchList';
 
 const defaultParams = {
   pageNum: 1,
@@ -25,9 +23,7 @@ const defaultParams = {
   name: '',
 };
 
-
-const StoreManagement = (props) => {
-
+const StoreManagement = props => {
   const {
     location,
     className,
@@ -37,7 +33,7 @@ const StoreManagement = (props) => {
   } = props;
 
   const [filters, setFilters] = useState(defaultParams);
-  const [currItem, setCurrItem] = useState(undefined)
+  const [currItem, setCurrItem] = useState(undefined);
   const [visible, setVisible] = useState(false);
 
   const onSearch = value =>
@@ -50,8 +46,8 @@ const StoreManagement = (props) => {
   const handlePageChange = (page, pageSize) => {
     setFilters(
       produce(filters, draft => {
-        draft.pageNum = page ;
-        draft.pageSize = pageSize
+        draft.pageNum = page;
+        draft.pageSize = pageSize;
       }),
     );
   };
@@ -60,7 +56,6 @@ const StoreManagement = (props) => {
     props.dispatch({
       type: listDataDispatch,
       payload: {
-
         ...filters,
       },
     });
@@ -74,7 +69,7 @@ const StoreManagement = (props) => {
     onChange: handlePageChange,
     ...data.pagination,
   };
-   /**
+  /**
    * 删除用户
    */
   const deleteItem = record => {
@@ -86,36 +81,33 @@ const StoreManagement = (props) => {
       okType: 'danger',
       onOk: () => {
         deleteApi(record.id).then(res => {
-          
-            message.success(formatMessage({ id: 'yeeorder.success' }));
-            if (data.list.length === 0 && data.pagination.current > 1) {
-              getDataList({ current: data.pagination.current - 1 });
-            } else {
-              getDataList();
-            }
-          
+          message.success(formatMessage({ id: 'yeeorder.success' }));
+          if (data.list.length === 0 && data.pagination.current > 1) {
+            getDataList({ current: data.pagination.current - 1 });
+          } else {
+            getDataList();
+          }
         });
       },
     });
   };
 
-    /**
+  /**
    * 新增 / 编辑
    */
   const addOrEditItem = record => {
-    setCurrItem(record ? JSON.parse(JSON.stringify(record)): undefined)
+    setCurrItem(record ? JSON.parse(JSON.stringify(record)) : undefined);
     setVisible(true);
   };
 
-    /**
+  /**
    * 隐藏modal
    */
   const hideModal = () => {
-    setCurrItem(undefined)
+    setCurrItem(undefined);
     setVisible(false);
   };
 
-  
   const columns = [
     {
       className: 'nowrap',
@@ -124,14 +116,24 @@ const StoreManagement = (props) => {
       dataIndex: 'id',
       fixed: 'left',
       title: '序号',
-      
     },
     {
       className: 'nowrap',
-      
       dataIndex: 'name',
       title: '门店名称',
-      
+    },
+    {
+      className: 'nowrap',
+      title: '门店链接',
+      render: (val, record) => {
+        return (
+          <a
+            rel='noopener noreferrer'
+            target='_blank'
+            href={`http://118.31.74.75:9528/${record.id}/category`}
+          >{`http://118.31.74.75:9528/${record.id}/category`}</a>
+        );
+      },
     },
     {
       key: 'action',
@@ -145,10 +147,10 @@ const StoreManagement = (props) => {
           </a>,
           <a onClick={() => deleteItem(record)}>
             {formatMessage({ id: 'components.table.action.delete' })}
-          </a>
+          </a>,
         ];
         return <ActionList actions={btnList} />;
-      }
+      },
     },
   ];
 
@@ -179,8 +181,6 @@ const StoreManagement = (props) => {
     </PageHeaderWrapper>
   );
 };
-
-
 
 export default connect(({ store, loading }) => ({
   store,
