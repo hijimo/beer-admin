@@ -5,7 +5,9 @@ export default {
   'menu.category.Category Management': '分类管理',
   'menu.country.Country Management': '国家管理',
   'menu.rank.Rank Management': '排行管理',
+  'menu.price.Price Management': '价格管理',
   'menu.goods.Goods Management': '商品管理',
+  'menu.decoration.Decoration Management': '装修管理',
 
   'menu.Product Management': 'Product Management',
   'menu.Add Product': 'Add Product',

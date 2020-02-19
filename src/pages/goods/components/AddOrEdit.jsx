@@ -25,14 +25,17 @@ const formItemLayout = {
 
 const { Option } = Select;
 
-const getFileModel = file => ({
-  id: _get(file, 'id') || null,
-  uid: _get(file, 'uid'),
-  size: _get(file, 'size'),
-  name: _get(file, 'name'),
-  type: _get(file, 'type'),
-  url: _get(file, 'url'),
-});
+const getFileModel = file =>
+  file
+    ? {
+        id: _get(file, 'id') || null,
+        uid: _get(file, 'uid'),
+        size: _get(file, 'size'),
+        name: _get(file, 'name'),
+        type: _get(file, 'type'),
+        url: _get(file, 'url'),
+      }
+    : null;
 const AddOrEdit = props => {
   const { currItem = {} } = props;
 
@@ -231,12 +234,12 @@ const AddOrEdit = props => {
               <Form.Item label='商品编码'>
                 {getFieldDecorator('no', {
                   initialValue: currItem.no || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '商品编码不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '商品编码不能为空',
+                  //   },
+                  // ],
                 })(<InputNumber style={{ width: '100%' }} placeholder='请输入商品编码' />)}
               </Form.Item>
             </Col>
@@ -301,12 +304,12 @@ const AddOrEdit = props => {
             {getFieldDecorator('videoFileModel', {
               validateFirst: true,
               initialValue: currItem.videoFileModel || [],
-              rules: [
-                {
-                  required: true,
-                  message: '请上传商品视频',
-                },
-              ],
+              // rules: [
+              //   {
+              //     required: true,
+              //     message: '请上传商品视频',
+              //   },
+              // ],
             })(<UploadList accpet='.mp4' maxLength={1} maxSize={51200} listType='picture-card' />)}
           </Form.Item>
         </Form>
@@ -318,12 +321,12 @@ const AddOrEdit = props => {
               <Form.Item label='品牌'>
                 {getFieldDecorator('brand', {
                   initialValue: currItem.brand || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '品牌不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '品牌不能为空',
+                  //   },
+                  // ],
                 })(<Input placeholder='请输入品牌' />)}
               </Form.Item>
             </Col>
@@ -331,12 +334,12 @@ const AddOrEdit = props => {
               <Form.Item label='品牌国家'>
                 {getFieldDecorator('brandCountry', {
                   initialValue: currItem.brandCountry || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '品牌国家不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '品牌国家不能为空',
+                  //   },
+                  // ],
                 })(<Input placeholder='请输入品牌国家' />)}
               </Form.Item>
             </Col>
@@ -344,12 +347,12 @@ const AddOrEdit = props => {
               <Form.Item label='产地'>
                 {getFieldDecorator('origin', {
                   initialValue: currItem.origin || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '产地不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '产地不能为空',
+                  //   },
+                  // ],
                 })(<Input placeholder='请输入产地' />)}
               </Form.Item>
             </Col>
@@ -357,12 +360,12 @@ const AddOrEdit = props => {
               <Form.Item label='规格'>
                 {getFieldDecorator('specification', {
                   initialValue: currItem.specification || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '规格不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '规格不能为空',
+                  //   },
+                  // ],
                 })(<Input maxLength={120} placeholder='请输入规格' />)}
               </Form.Item>
             </Col>
@@ -370,12 +373,12 @@ const AddOrEdit = props => {
               <Form.Item label='风格'>
                 {getFieldDecorator('style', {
                   initialValue: currItem.style || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '风格不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '风格不能为空',
+                  //   },
+                  // ],
                 })(<Input placeholder='请输入风格' />)}
               </Form.Item>
             </Col>
@@ -383,12 +386,12 @@ const AddOrEdit = props => {
               <Form.Item label='颜色'>
                 {getFieldDecorator('color', {
                   initialValue: currItem.color || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '颜色不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '颜色不能为空',
+                  //   },
+                  // ],
                 })(<Input placeholder='请输入颜色' />)}
               </Form.Item>
             </Col>
@@ -396,12 +399,12 @@ const AddOrEdit = props => {
               <Form.Item label='酒精度'>
                 {getFieldDecorator('alcohol', {
                   initialValue: currItem.alcohol || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '酒精度不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '酒精度不能为空',
+                  //   },
+                  // ],
                 })(<InputNumber style={{ width: '100%' }} placeholder='请输入酒精度' />)}
               </Form.Item>
             </Col>
@@ -409,12 +412,12 @@ const AddOrEdit = props => {
               <Form.Item label='苦度'>
                 {getFieldDecorator('bitterness', {
                   initialValue: currItem.bitterness || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '苦度不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '苦度不能为空',
+                  //   },
+                  // ],
                 })(<InputNumber style={{ width: '100%' }} placeholder='请输入苦度' />)}
               </Form.Item>
             </Col>
@@ -423,12 +426,12 @@ const AddOrEdit = props => {
           <Form.Item label='风味特点'>
             {getFieldDecorator('flavor', {
               initialValue: currItem.flavor || '',
-              rules: [
-                {
-                  required: true,
-                  message: '风味特点不能为空',
-                },
-              ],
+              // rules: [
+              //   {
+              //     required: true,
+              //     message: '风味特点不能为空',
+              //   },
+              // ],
             })(<TextArea maxLength={300} rows={5} placeholder='请输入风味特点' />)}
           </Form.Item>
         </Form>
@@ -440,12 +443,12 @@ const AddOrEdit = props => {
               <Form.Item label='RatebeerScore'>
                 {getFieldDecorator('ratebeerScore', {
                   initialValue: currItem.ratebeerScore || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: 'RatebeerScore不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: 'RatebeerScore不能为空',
+                  //   },
+                  // ],
                 })(<InputNumber style={{ width: '100%' }} placeholder='请输入RatebeerScore' />)}
               </Form.Item>
             </Col>
@@ -453,12 +456,12 @@ const AddOrEdit = props => {
               <Form.Item label='获奖奖项名称'>
                 {getFieldDecorator('awards', {
                   initialValue: currItem.awards || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '获奖奖项名称不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '获奖奖项名称不能为空',
+                  //   },
+                  // ],
                 })(<Input maxLength={120} placeholder='请输入获奖奖项名称' />)}
               </Form.Item>
             </Col>
@@ -466,12 +469,12 @@ const AddOrEdit = props => {
               <Form.Item label='获奖次数'>
                 {getFieldDecorator('awardsCount', {
                   initialValue: currItem.awardsCount || '',
-                  rules: [
-                    {
-                      required: true,
-                      message: '获奖次数不能为空',
-                    },
-                  ],
+                  // rules: [
+                  //   {
+                  //     required: true,
+                  //     message: '获奖次数不能为空',
+                  //   },
+                  // ],
                 })(<InputNumber style={{ width: '100%' }} placeholder='请输入获奖次数' />)}
               </Form.Item>
             </Col>
@@ -485,12 +488,12 @@ const AddOrEdit = props => {
             {getFieldDecorator('shelfPicModel', {
               validateFirst: true,
               initialValue: currItem.shelfPicModel || [],
-              rules: [
-                {
-                  required: true,
-                  message: '请上传货架图',
-                },
-              ],
+              // rules: [
+              //   {
+              //     required: true,
+              //     message: '请上传货架图',
+              //   },
+              // ],
             })(
               <UploadList
                 accpet='.jpg, .png,.jpeg'

@@ -37,6 +37,21 @@ const routes = [
             ],
           },
           {
+            path: '/decoration',
+            name: 'decoration',
+            icon: 'audit',
+            Routes: ['sm-common/components/PageAuthorized'],
+            resourceKey: 'decoration',
+            routes: [
+              {
+                path: '/decoration',
+                name: 'Decoration Management',
+                component: './decoration/list',
+                resourceKey: 'decoration',
+              },
+            ],
+          },
+          {
             path: '/category',
             name: 'category',
             icon: 'audit',
@@ -48,6 +63,21 @@ const routes = [
                 name: 'Category Management',
                 component: './category/list',
                 resourceKey: 'category',
+              },
+            ],
+          },
+          {
+            path: '/price',
+            name: 'price',
+            icon: 'audit',
+            Routes: ['sm-common/components/PageAuthorized'],
+            resourceKey: 'price',
+            routes: [
+              {
+                path: '/price',
+                name: 'Price Management',
+                component: './price/list',
+                resourceKey: 'price',
               },
             ],
           },
@@ -292,30 +322,30 @@ const routes = [
             Routes: ['sm-common/components/PageAuthorized'],
             resourceKey: 'favoriteList',
           },
-          {
-            path: '/websiteManagement',
-            icon: 'layout',
-            name: 'Website Management',
-            Routes: ['sm-common/components/PageAuthorized'],
-            resourceKey: 'decoration',
-            routes: [
-              {
-                path: '/websiteManagement/websiteDecoration',
-                name: 'Website Decoration',
-                component: './websiteManagement/website',
-                resourceKey: 'websiteDecoration',
-              },
-              {
-                path: '/websiteManagement/showroom',
-                name: 'Showroom',
-                component: './websiteManagement/showroom',
-                resourceKey: 'showroomDecoration',
-              },
-              {
-                component: './404',
-              },
-            ],
-          },
+          // {
+          //   path: '/websiteManagement',
+          //   icon: 'layout',
+          //   name: 'Website Management',
+          //   Routes: ['sm-common/components/PageAuthorized'],
+          //   resourceKey: 'decoration',
+          //   routes: [
+          //     {
+          //       path: '/websiteManagement/websiteDecoration',
+          //       name: 'Website Decoration',
+          //       component: './websiteManagement/website',
+          //       resourceKey: 'websiteDecoration',
+          //     },
+          //     {
+          //       path: '/websiteManagement/showroom',
+          //       name: 'Showroom',
+          //       component: './websiteManagement/showroom',
+          //       resourceKey: 'showroomDecoration',
+          //     },
+          //     {
+          //       component: './404',
+          //     },
+          //   ],
+          // },
           {
             path: '/myCompany',
             name: 'My Company',
