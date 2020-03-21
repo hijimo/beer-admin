@@ -10,6 +10,17 @@ const routes = [
     ],
   },
   {
+    path: '/help',
+    routes: [
+      {
+        path: '/help',
+        name: 'Decoration Help',
+        component: './decoration/list/help',
+        // resourceKey: 'decoration',
+      },
+    ],
+  },
+  {
     path: '/',
     component: '../layouts/SecurityLayout',
     routes: [

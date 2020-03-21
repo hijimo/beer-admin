@@ -81,6 +81,9 @@ const AddOrEdit = props => {
         const pic4 = _get(values, 'img2Model[0]');
         const pic5 = _get(values, 'primaryBtnBgModel[0]');
         const pic6 = _get(values, 'title1BgModel[0]');
+        const pic7 = _get(values, 'bg1Model[0]');
+        const pic8 = _get(values, 'bg2Model[0]');
+
         const getColumnsModel = () => {
           const columnsModel = _map(_get(values, 'columnsModelKey'), (key, idx) => ({
             color: _get(values, `columnsModelColor[${key}]`),
@@ -102,6 +105,8 @@ const AddOrEdit = props => {
           img2Model: getFileModel(pic4),
           primaryBtnBgModel: getFileModel(pic5),
           title1BgModel: getFileModel(pic6),
+          bg1Model: getFileModel(pic7),
+          bg2Model: getFileModel(pic8),
         };
         if (currItem && currItem.id) {
           params.id = currItem.id;
@@ -217,6 +222,11 @@ const AddOrEdit = props => {
       okText={formatMessage({ id: 'yeeorder.Confirm' })}
       cancelText={formatMessage({ id: 'yeeorder.Cancel' })}
     >
+      <a href='/help' target='_blank'>
+        点击查看帮助文档
+      </a>
+      <div style={{ marginBottom: 10 }}></div>
+
       <Card title='所属信息' className={styles.card} bordered={false}>
         <Form {...formItemLayout} layout='vertical'>
           <Row gutter={16}>
@@ -418,6 +428,32 @@ const AddOrEdit = props => {
             {getFieldDecorator('img2Model', {
               validateFirst: true,
               initialValue: currItem.img2Model || [],
+            })(
+              <UploadList
+                accpet='.jpg, .png,.jpeg'
+                maxLength={1}
+                maxSize={1024}
+                listType='picture-card'
+              />,
+            )}
+          </Form.Item>
+          <Form.Item label='辅助图1'>
+            {getFieldDecorator('bg1Model', {
+              validateFirst: true,
+              initialValue: currItem.bg1Model || [],
+            })(
+              <UploadList
+                accpet='.jpg, .png,.jpeg'
+                maxLength={1}
+                maxSize={1024}
+                listType='picture-card'
+              />,
+            )}
+          </Form.Item>
+          <Form.Item label='辅助图2'>
+            {getFieldDecorator('bg2Model', {
+              validateFirst: true,
+              initialValue: currItem.bg2Model || [],
             })(
               <UploadList
                 accpet='.jpg, .png,.jpeg'

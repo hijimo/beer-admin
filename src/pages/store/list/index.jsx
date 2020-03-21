@@ -96,7 +96,17 @@ const StoreManagement = props => {
    * 新增 / 编辑
    */
   const addOrEditItem = record => {
-    setCurrItem(record ? JSON.parse(JSON.stringify(record)) : undefined);
+    setCurrItem(
+      record
+        ? JSON.parse(
+            JSON.stringify({
+              ...record,
+              musicModel: record.musicModel ? [record.musicModel] : [],
+              backModel: record.backModel ? [record.backModel] : [],
+            }),
+          )
+        : undefined,
+    );
     setVisible(true);
   };
 

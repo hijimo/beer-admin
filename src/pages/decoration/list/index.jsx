@@ -121,6 +121,8 @@ const DecorationManagement = props => {
               title1BgModel: record.title1BgModel ? [record.title1BgModel] : [],
               img1Model: record.img1Model ? [record.img1Model] : [],
               img2Model: record.img2Model ? [record.img2Model] : [],
+              bg1Model: record.bg1Model ? [record.bg1Model] : [],
+              bg2Model: record.bg2Model ? [record.bg2Model] : [],
             }),
           )
         : undefined,

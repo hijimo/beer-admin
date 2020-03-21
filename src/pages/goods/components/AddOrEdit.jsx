@@ -453,7 +453,7 @@ const AddOrEdit = props => {
               </Form.Item>
             </Col>
             <Col xxl={6} lg={12} md={12} sm={24}>
-              <Form.Item label='获奖奖项名称'>
+              <Form.Item label='获奖描述'>
                 {getFieldDecorator('awards', {
                   initialValue: currItem.awards || '',
                   // rules: [
@@ -465,7 +465,7 @@ const AddOrEdit = props => {
                 })(<Input maxLength={120} placeholder='请输入获奖奖项名称' />)}
               </Form.Item>
             </Col>
-            <Col xxl={6} lg={12} md={12} sm={24}>
+            <Col xxl={6} lg={12} md={12} sm={24} style={{ display: 'none' }}>
               <Form.Item label='获奖次数'>
                 {getFieldDecorator('awardsCount', {
                   initialValue: currItem.awardsCount || '',
